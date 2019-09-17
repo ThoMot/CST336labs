@@ -2,9 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lab 3 Quiz</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <style>
+        .bg-info{
+            background-color: #C5E6F8 !important;
+        }
+
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        .hide-when-loaded {
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
+<header class="d-flex justify-content-center p-5 bg-light">
+    <h2>US Geography Quiz</h2>
+
+</header>
+
+<main class="bg-info h-100 w-100 container p-5">
+    <section id="question1">
+        <form>
+            <div class="form-group">
+                <img src="images/xmark.png" class="hide-when-loaded">
+                <img src="images/checkmark.png" class="hide-when-loaded alert-success">
+                <label for="exampleFormControlInput1">What is the capital of California?</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="sacramento">
+                <div class="alert alert-success mt-1 hide-when-loaded" role="alert">
+                    Correct!
+                </div>
+                <div class="alert alert-danger mt-1 hide-when-loaded" role="alert">
+                    Incorrect!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+        </form>
+
+    </section>
+</main>
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+       // $("img").hide();
+        $("button[type='submit']").on("click touchstart", showSuccess);
+
+        function showSuccess(e) {
+            //cancel default behavious
+            e.preventDefault();
+            $(".alert-success").show();
+        }
+    });
+
+</script>
 
 </body>
 </html>
