@@ -1,16 +1,16 @@
 var randomNumber = Math.floor(Math.random() * 99) + 1;
-var guesses = document.querySelector('#guesses');
-var lastResult = document.querySelector('#lastResult');
-var lowOrHi = document.querySelector('#lowOrHi');
+var guesses = $('#guesses')[0];
+var lastResult = $('#lastResult')[0];
+var lowOrHi = $('#lowOrHi')[0];
 
 const validationFeedback = $("#validationFeedback")[0];
 const attemptNumber = $("#attemptNumber")[0];
 
-var guessSubmit = document.querySelector('.guessSubmit');
-var guessField = document.querySelector('.guessField');
+var guessSubmit = $('.guessSubmit')[0];
+var guessField = $('.guessField')[0];
 
 var guessCount = 1;
-var resetButton = document.querySelector('#reset');
+var resetButton = $('#reset')[0];
 guessField.focus();
 
 resetButton.style.display = 'none';
@@ -77,7 +77,9 @@ function checkGuess() {
     viewAttempt();
 }
 
-guessSubmit.addEventListener('click', inputValidation);
+$(guessSubmit).on("click", () => {
+    inputValidation();
+});
 
 $(guessField).on("focus", viewAttempt());
 
