@@ -2,6 +2,7 @@ var randomNumber = Math.floor(Math.random() * 99) + 1;
 var guesses = document.querySelector('#guesses');
 var lastResult = document.querySelector('#lastResult');
 var lowOrHi = document.querySelector('#lowOrHi');
+
 const validationFeedback = $("#validationFeedback")[0];
 const attemptNumber = $("#attemptNumber")[0];
 
@@ -14,9 +15,14 @@ guessField.focus();
 
 resetButton.style.display = 'none';
 
+const gamesWon = $("#gamesWon")[0];
+const gamesLost = $("#gamesLost")[0];
+let wins = 0;
+let losses = 0;
+
 const inputValidation = () => {
     const input = guessField.value;
-    if (!isNaN(input) && input >= 0 && input < 99) {
+    if (!isNaN(input) && input >= 0 && input <= 99) {
         checkGuess();
         validationFeedback.innerHTML = "";
     } else {
@@ -26,9 +32,16 @@ const inputValidation = () => {
 };
 
 const viewAttempt = () => {
-    if (guessCount !== 0) {
+    if (guessCount >= 7) {
+        attemptNumber.innerHTML = '7';
+    } else {
         attemptNumber.innerHTML = guessCount;
     }
+};
+
+const updateScoreboard = () => {
+    gamesWon.innerHTML = wins;
+    gamesLost.innerHTML = losses;
 };
 
 function checkGuess() {
@@ -42,9 +55,11 @@ function checkGuess() {
         lastResult.innerHTML = 'Congratulations! You got it right!';
         lastResult.style.backgroundColor = 'green';
         lowOrHi.innerHTML = '';
+        wins++;
         setGameOver();
     } else if(guessCount === 7) {
         lastResult.innerHTML = 'Sorry You Lost!';
+        losses++;
         setGameOver();
     } else {
         lastResult.innerHTML = 'Wrong!';
@@ -71,6 +86,7 @@ function setGameOver() {
     guessSubmit.disabled = true;
     resetButton.style.display = 'inline';
     resetButton.addEventListener('click', resetGame);
+    updateScoreboard();
 }
 
 function resetGame() {
