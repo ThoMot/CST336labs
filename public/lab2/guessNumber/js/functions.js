@@ -2,6 +2,8 @@ var randomNumber = Math.floor(Math.random() * 99) + 1;
 var guesses = document.querySelector('#guesses');
 var lastResult = document.querySelector('#lastResult');
 var lowOrHi = document.querySelector('#lowOrHi');
+const validationFeedback = $("#validationFeedback")[0];
+const attemptNumber = $("#attemptNumber")[0];
 
 var guessSubmit = document.querySelector('.guessSubmit');
 var guessField = document.querySelector('.guessField');
@@ -11,6 +13,23 @@ var resetButton = document.querySelector('#reset');
 guessField.focus();
 
 resetButton.style.display = 'none';
+
+const inputValidation = () => {
+    const input = guessField.value;
+    if (!isNaN(input) && input >= 0 && input < 99) {
+        checkGuess();
+        validationFeedback.innerHTML = "";
+    } else {
+        validationFeedback.innerHTML = "You must enter a number between 0 and 99";
+        lastResult.innerHTML = "";
+    }
+};
+
+const viewAttempt = () => {
+    if (guessCount !== 0) {
+        attemptNumber.innerHTML = guessCount;
+    }
+};
 
 function checkGuess() {
     var userGuess = Number(guessField.value);
@@ -40,9 +59,12 @@ function checkGuess() {
     guessCount++;
     guessField.value = '';
     guessField.focus();
+    viewAttempt();
 }
 
-guessSubmit.addEventListener('click', checkGuess);
+guessSubmit.addEventListener('click', inputValidation);
+
+$(guessField).on("focus", viewAttempt());
 
 function setGameOver() {
     guessField.disabled = true;

@@ -12,7 +12,12 @@ body{
     background-color:#edf2f9;
     font-size: 2em;    
     width:900px;
-    height:200px;
     margin:0 auto;
+    padding: 20px;
     border-radius:20px;
+}
+
+#validationFeedback {
+    background-color: red;
+    color: white;
 }
