@@ -25,7 +25,6 @@
         $(document).ready(() => {
             // Loads the answers for question 4 when the page has loaded.
             displayQ4Choices();
-
             // Event listener
             $("button").on("click", () => {
                 gradeQuiz();
@@ -50,14 +49,14 @@
             const rightAnswer = index => {
                 $(`#q${index}Feedback`).html("Correct!");
                 $(`#q${index}Feedback`).attr("class", "bg-success text-white");
-                $(`#markImg${index}`).html("<img class='img/checkmark.png'>");
+                $(`#markImg${index}`).html("<img src='img/checkmark.png'>");
                 score += 20;
             };
 
             const wrongAnswer = index => {
                 $(`#q${index}Feedback`).html("Incorrect!");
                 $(`#q${index}Feedback`).attr("class", "bg-warning text-white");
-                $(`#markImg${index}`).html("<img class='img/xmark.png'>");
+                $(`#markImg${index}`).html("<img src='img/xmark.png'>");
             };
 
             const gradeQuiz = () => {
