@@ -8,10 +8,103 @@ const displayQ4Choices = () => {
     }
 };
 
+function componentToHex(c) {
+    let hex = c.toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function rgbToHex(rgb) {
+    let sep = rgb.indexOf(",") > -1 ? "," : " ";
+    rgb = rgb.substr(4).split(")")[0].split(sep);
+    let r = (+rgb[0]).toString(16),
+        g = (+rgb[1]).toString(16),
+        b = (+rgb[2]).toString(16);
+
+    if (r.length === 1)
+        r = "0" + r;
+    if (g.length === 1)
+        g = "0" + g;
+    if (b.length === 1)
+        b = "0" + b;
+
+    return "#" + r + g + b;
+}
+
+function getColorsFromRgb(rgb) {
+    let sep = rgb.indexOf(",") > -1 ? "," : " ";
+    rgb = rgb.substr(4).split(")")[0].split(sep);
+
+    return {
+        r: rgb[0].trim(),
+        g: rgb[1].trim(),
+        b: rgb[2].trim(),
+    }
+}
+
+function hexToRgb(hex) {
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+function validateRedColor(redAnswer) {
+    let correct = 0;
+    if(redAnswer.r > 250) {
+        correct++;
+    }
+    if(redAnswer.g < 50) {
+        correct++;
+    }
+    if(redAnswer.b < 50) {
+        correct++;
+    }
+    return correct === 3;
+}
+
+function validateWhiteColor(whiteAnswer) {
+    let correct = 0;
+    if(whiteAnswer.r > 250) {
+        correct++;
+    }
+    if(whiteAnswer.g > 250) {
+        correct++;
+    }
+    if(whiteAnswer.b > 250) {
+        correct++;
+    }
+    return correct === 3;
+}
+
+function validateBlueColor(blueAnswer) {
+    let correct = 0;
+    if(blueAnswer.r < 50) {
+        correct++;
+    }
+    if(blueAnswer.g < 60) {
+        correct++;
+    }
+    if(blueAnswer.b > 250) {
+        correct++;
+    }
+    return correct === 3;
+}
+
 $(document).ready(() => {
+
+    // Variables
+    let score = 0;
+
     // Loads the answers for question 4 when the page has loaded.
     displayQ4Choices();
-    // Event listener
+
+    // Event listeners
     $("button").on("click", () => {
         gradeQuiz();
     });
@@ -21,8 +114,24 @@ $(document).ready(() => {
         $(this).css("background", "rgb(255, 255, 0)");
     });
 
-    let score = 0;
+    $(".q8item").on("click", function () {
+        $(".q8item").css("box-shadow", "");
+        $(".q8item").attr("id", "");
+        let focusColor = "rgb(255, 255, 0)";
+        $(this).css("box-shadow", `inset 0px 0px 10px 1px ${focusColor}`);
+        $(this).attr("id", "colorSelected");
+        $("#colorz")[0].value = rgbToHex($(this).css("background-color"));
+    });
 
+    $("#colorz").on("change", function () {
+        const color = $("#colorz").val();
+        const colorRgb = hexToRgb(color);
+        $("#colorSelected").css("background", `rgb(${colorRgb.r}, ${colorRgb.g}, ${colorRgb.b})`);
+    });
+
+
+
+    // Input validation
     const isFormValid = () => {
         let isValid = true;
         if ($("#q1").val() === "") {
@@ -32,17 +141,18 @@ $(document).ready(() => {
         return isValid;
     };
 
+    // Game functions
     const rightAnswer = index => {
         $(`#q${index}Feedback`).html("Correct!");
         $(`#q${index}Feedback`).attr("class", "bg-success text-white");
-        $(`#markImg${index}`).html("<img src='img/checkmark.png'>");
+        $(`#markImg${index}`).html("<img src='img/checkmark.png' alt='Checkmark'>");
         score += 20;
     };
 
     const wrongAnswer = index => {
         $(`#q${index}Feedback`).html("Incorrect!");
         $(`#q${index}Feedback`).attr("class", "bg-warning text-white");
-        $(`#markImg${index}`).html("<img src='img/xmark.png'>");
+        $(`#markImg${index}`).html("<img src='img/xmark.png' alt='Xmark'>");
     };
 
     const gradeQuiz = () => {
@@ -92,6 +202,21 @@ $(document).ready(() => {
             wrongAnswer(5);
         }
 
+        // Question 8
+        const redAnswer = getColorsFromRgb($(".red").css("background-color"));
+        const blueAnswer = getColorsFromRgb($(".blue").css("background-color"));
+        const whiteAnswer = getColorsFromRgb($(".white").css("background-color"));
+        if(validateRedColor(redAnswer) && validateBlueColor(blueAnswer) && validateWhiteColor(whiteAnswer)) {
+            rightAnswer(8);
+        } else {
+            wrongAnswer(8);
+        }
+
+
+        // Scoreboard / tracker
+        if (score < 80) {
+            $("#totalScore").attr("class", "text-danger");
+        }
         $("#totalScore").html(`Total Score: ${score}`);
     };
 });
