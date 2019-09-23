@@ -165,6 +165,7 @@ $(document).ready(() => {
         let q1Response = $("#q1").val().toLowerCase();
         let q2Response = $("#q2").val();
         let q4Response = $("input[name=q4]:checked").val();
+        let q6Response = $("#q6").val();
 
         // Question 1
         if (q1Response === "sacramento") {
@@ -200,6 +201,13 @@ $(document).ready(() => {
             rightAnswer(5);
         } else {
             wrongAnswer(5);
+        }
+
+        //Question 6
+        if(q6Response == 4){
+            rightAnswer(6)
+        } else {
+            wrongAnswer(6)
         }
 
         // Question 8
