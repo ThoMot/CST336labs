@@ -129,8 +129,6 @@ $(document).ready(() => {
         $("#colorSelected").css("background", `rgb(${colorRgb.r}, ${colorRgb.g}, ${colorRgb.b})`);
     });
 
-
-
     // Input validation
     const isFormValid = () => {
         let isValid = true;
@@ -146,7 +144,7 @@ $(document).ready(() => {
         $(`#q${index}Feedback`).html("Correct!");
         $(`#q${index}Feedback`).attr("class", "bg-success text-white");
         $(`#markImg${index}`).html("<img src='img/checkmark.png' alt='Checkmark'>");
-        score += 20;
+        score += 12.5;
     };
 
     const wrongAnswer = index => {
