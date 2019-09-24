@@ -10,7 +10,7 @@
 <body id="dummybodyid">
 <h1> Sign Up Form </h1>
 
-<form>
+<form method="post">
     <fieldset>
         <legend>Sign Up</legend>
         <div><label>First Name:</label><input type="text"></div>
@@ -21,9 +21,9 @@
         <div><label>City:</label><span id="city"></span></div>
         <div><label>Latitude:</label><span id="latitude"></span></div>
         <div><label>Longitude:</label><span id="longitude"></span></div>
-        <div><label>State:</label><input type="text"></div>
-        <div><label>Select a County:</label><select></select></div>
-        <div><label>Desired Username:</label><input type="text"></div>
+        <div><label>State:</label><input type="text" id="state"></div>
+        <div><label>Select a County:</label><select id="county"></select></div>
+        <div><label>Desired Username:</label><input type="text" id="userName"><span id="error"></span></div>
         <div><label>Password:</label><input type="password"></div>
         <div><label>Type Password Again:</label><input type="password"></div>
         <div><input type="submit" value="Sign up!"></div>
@@ -49,6 +49,45 @@
         });//ajax
 
     }); //zip
+
+    $("#state").on("change", function () {
+        // alert($("#zip").val());
+        $.ajax({
+            method: "GET",
+            url: "https://cst336.herokuapp.com/projects/api/countyListAPI.php",
+            dataType: "json",
+            data: {"state" : $("#state").val() },
+            success: function(result,status) {
+
+                $("#county").html("<option> Select One </option>");
+                for (let i=0; i < result.length; i++){
+                    $("#county").append("<option>" + result[i].county + "</option>");
+                }
+            }
+        });//ajax
+
+    }); //county
+
+    $("#userName").on("change", function () {
+        // alert($("#zip").val());
+        $.ajax({
+            method: "GET",
+            url: "https://cst336.herokuapp.com/projects/api/usernamesAPI.php",
+            dataType: "json",
+            data: {"username" : $("#userName").val() },
+            success: function(result,status) {
+
+                if(result.available){
+                    $("#error").html("Username is available!");
+                    $("#error").css("color", "green");
+                } else {
+                    $("#error").html("Username is taken");
+                    $("#error").css("color", "red");
+                }
+            }
+        });//ajax
+
+    }); //username
 </script>
 </body>
 
