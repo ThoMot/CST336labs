@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>AJAX: Sign Up Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -16,10 +17,10 @@
         <div><label>Last Name:</label><input type="text"></div>
         <div><label>Email:</label><input type="text"></div>
         <div><label>Phone Number:</label><input type="text"></div>
-        <div><label>Zip Code:</label><input type="text"></div>
-        <div><label>City:</label></div>
-        <div><label>Latitude:</label></div>
-        <div><label>Longitude:</label></div>
+        <div><label>Zip Code:</label><input type="text" name="zip" id="zip"></div>
+        <div><label>City:</label><span id="city"></span></div>
+        <div><label>Latitude:</label><span id="latitude"></span></div>
+        <div><label>Longitude:</label><span id="longitude"></span></div>
         <div><label>State:</label><input type="text"></div>
         <div><label>Select a County:</label><select></select></div>
         <div><label>Desired Username:</label><input type="text"></div>
@@ -28,6 +29,27 @@
         <div><input type="submit" value="Sign up!"></div>
     </fieldset>
 </form>
+
+<script>
+    //Displaying City from API after typing a zip code
+    $("#zip").on("change", function () {
+       // alert($("#zip").val());
+        $.ajax({
+            method: "GET",
+            url: "https://cst336.herokuapp.com/projects/api/cityInfoAPI.php",
+            dataType: "json",
+            data: {"zip" : $("#zip").val() },
+            success: function(result,status) {
+
+                //alert(result.city);
+                $("#city").html(result.city);
+                $("#latitude").html(result.latitude);
+                $("#longitude").html(result.longitude);
+            }
+        });//ajax
+
+    }); //zip
+</script>
 </body>
 
 </html>
