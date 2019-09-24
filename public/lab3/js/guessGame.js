@@ -96,7 +96,7 @@ function validateBlueColor(blueAnswer) {
     return correct === 3;
 }
 
-$(document).ready(() => {
+$(document).ready((key, value) => {
 
     // Variables
     let score = 0;
@@ -224,5 +224,15 @@ $(document).ready(() => {
             $("#totalScore").attr("class", "text-danger");
         }
         $("#totalScore").html(`Total Score: ${score}`);
+
+        let scoreHistory = [];
+        if (localStorage.length === 0) {
+            scoreHistory.push(score);
+        } else {
+            scoreHistory = JSON.parse(localStorage.getItem("scoreHistory"));
+            scoreHistory.push(score);
+        }
+        localStorage.setItem("scoreHistory", JSON.stringify(scoreHistory));
+
     };
 });
