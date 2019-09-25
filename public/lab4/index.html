@@ -1,33 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>AJAX: Sign Up Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  </head>
 
-</head>
-
-<body id="dummybodyid">
-<h1> Sign Up Form </h1>
-
-<form>
-    <fieldset>
+  <body id="dummybodyid">
+    <h1>Sign Up Form</h1>
+    <button><a href="welcome.html">Click me</a></button>
+    <form id="signupForm" method="post" action="welcome.html">
+      <fieldset>
         <legend>Sign Up</legend>
-        <div><label>First Name:</label><input type="text"></div>
-        <div><label>Last Name:</label><input type="text"></div>
-        <div><label>Email:</label><input type="text"></div>
-        <div><label>Phone Number:</label><input type="text"></div>
-        <div><label>Zip Code:</label><input type="text"></div>
-        <div><label>City:</label></div>
-        <div><label>Latitude:</label></div>
+        <div><label>First Name:</label><input type="text" /></div>
+        <div><label>Last Name:</label><input type="text" /></div>
+        <div><label>Email:</label><input type="text" /></div>
+        <div><label>Phone Number:</label><input type="text" /></div>
+        <div>
+          <label>Zip Code:</label><input type="text" name="zip" id="zip" />
+        </div>
+        <div><label>City:</label><span id="city"></span></div>
+        <div><label>Latitude:</label><span id="latitude"></span></div>
         <div><label>Longitude:</label></div>
-        <div><label>State:</label><input type="text"></div>
-        <div><label>Select a County:</label><select></select></div>
-        <div><label>Desired Username:</label><input type="text"></div>
-        <div><label>Password:</label><input type="password"></div>
-        <div><label>Type Password Again:</label><input type="password"></div>
-        <div><input type="submit" value="Sign up!"></div>
-    </fieldset>
-</form>
-</body>
+        <div><label>State:</label><input type="text" id="state" /></div>
+        <div>
+          <label>Select a County:</label
+          ><select id="county">
+            <option value="">Select One</option>
+          </select>
+        </div>
+        <div>
+          <label>Desired Username:</label
+          ><input id="username" type="text" /><span id="usernameError"></span
+          ><br />
+        </div>
+        <div>
+          <label>Password:</label><input type="password" id="password" /><span
+            id="passwordError"
+          ></span>
+        </div>
+        <div>
+          <label>Type Password Again:</label
+          ><input type="password" id="passwordAgain" /><span
+            id="passwordAgainError"
+          ></span>
+        </div>
+        <div><input type="submit" value="Sign up!" /></div>
+      </fieldset>
+    </form>
+    <script>
+      let usernameAvailable = false;
 
+      $("#zip").on("change", function() {
+        // alert($("#zip").val());
+        $.ajax({
+          method: "GET",
+          url: "https://cst336.herokuapp.com/projects/api/cityInfoAPI.php",
+          dataType: "json",
+          data: { zip: $("#zip").val() },
+          success: function(res, sts) {
+            // alert(res.city);
+            $("#city").html(res.city);
+            $("#latitude").html(res.latitude);
+          }
+        });
+      });
+
+      $("#state").on("change", function() {
+        // alert($("#state").val());
+        $.ajax({
+          method: "GET",
+          url: "https://cst336.herokuapp.com/projects/api/countyListAPI.php",
+          dataType: "json",
+          data: {
+            state: $("#state").val()
+          },
+          success: function(res, sts) {
+            $("#county").html("<option>Select One</option>");
+            res.forEach(state => {
+              $("#county").append("<option>" + state.county + "</option>");
+            });
+          }
+        });
+      });
+
+      $("#username").change(function() {
+        // alert($("#username").val());
+        $.ajax({
+          method: "GET",
+          url: "https://cst336.herokuapp.com/projects/api/usernamesAPI.php",
+          dataType: "json",
+          data: {
+            username: $("#username").val()
+          },
+          success: function(res, sts) {
+            if (res.available) {
+              $("#usernameError").html("Username is available!");
+              $("#usernameError").css("color", "green");
+              usernameAvailable = true;
+            } else {
+              $("#usernameError").html("Username is unavailable");
+              $("#usernameError").css("color", "red");
+              usernameAvailable = false;
+            }
+          }
+        });
+      });
+
+      $("#signupForm").on("submit", function(e) {
+        if (!isFormValid()) {
+          e.preventDefault();
+        }
+      });
+
+      function isFormValid() {
+        $("#usernameError").html("");
+        $("#passwordError").html("");
+        $("#passwordAgainError").html("");
+        isValid = true;
+        if (!usernameAvailable) {
+          isValid = false;
+        }
+
+        if ($("#username").val() == 0) {
+          isValid = false;
+          $("#usernameError").html("Username is required");
+        }
+
+        if ($("#password").val().length < 6) {
+          isValid = false;
+          $("#passwordError").html("Password must have atleast 6 characters");
+        }
+
+        if ($("#password").val() != $("#passwordAgain").val()) {
+          $("#passwordAgainError").html("Password Mismatch");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+    </script>
+  </body>
 </html>
