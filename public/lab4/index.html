@@ -4,13 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>AJAX: Sign Up Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/signUp.css">
 
 </head>
 
 <body id="dummybodyid">
 <h1> Sign Up Form </h1>
 
-<form method="post" action="welcome.html">
+<form id="signupForm" method="get" action="welcome.html">
     <fieldset>
         <legend>Sign Up</legend>
         <div><label>First Name:</label><input type="text"></div>
@@ -21,16 +23,17 @@
         <div><label>City:</label><span id="city"></span></div>
         <div><label>Latitude:</label><span id="latitude"></span></div>
         <div><label>Longitude:</label><span id="longitude"></span></div>
-        <div><label>State:</label><input type="text" id="state"></div>
+        <div><label>State:</label><select id="state"></select></div>
         <div><label>Select a County:</label><select id="county"></select></div>
         <div><label>Desired Username:</label><input type="text" id="userName"><span id="error"></span></div>
-        <div><label>Password:</label><input type="password"></div>
-        <div><label>Type Password Again:</label><input type="password"></div>
+        <div><label>Password:</label><input id="password" type="password"><span class="bg-info" id="passError"></span></div>
+        <div><label>Type Password Again:</label><input id="passAgain" type="password"><span id="passAgainError"></span></div>
         <div><input type="submit" value="Sign up!"></div>
     </fieldset>
 </form>
 
 <script>
+    var usernameAvailable = false;
     //Displaying City from API after typing a zip code
     $("#zip").on("change", function () {
        // alert($("#zip").val());
@@ -49,6 +52,7 @@
         });//ajax
 
     }); //zip
+
 
     $("#state").on("change", function () {
         // alert($("#zip").val());
@@ -80,14 +84,45 @@
                 if(result.available){
                     $("#error").html("Username is available!");
                     $("#error").css("color", "green");
+                    usernameAvailable = true;
                 } else {
                     $("#error").html("Username is taken");
                     $("#error").css("color", "red");
+                    usernameAvailable = false;
                 }
             }
         });//ajax
 
     }); //username
+
+    $("#signupForm").on("submit", function (e) {
+        //alert("Submitting form...");
+        //event.preventDefault();
+        if(!isFormValid()) {
+            e.preventDefault();
+        }
+    });//form
+
+    function isFormValid() {
+        isValid = true;
+        if(!usernameAvailable){
+            isValid = false;
+        }
+        if($("#userName").val().length == 0){
+            isValid = false;
+            $("usernameError").html("Username is required");
+        }
+        if($("#password").val() != $("#passAgain").val()){
+            $("#passAgainError").html("Password mismatch!");
+            isValid = false;
+        }
+        if($("#password").val().length < 6){
+            isValid = false;
+            $("#passError").html("Password is shorter than 6 characters!");
+        }
+        return isValid;
+    }
+
 </script>
 </body>
 
