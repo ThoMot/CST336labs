@@ -1,3 +1,8 @@
+/**
+ * Author: Thora Marie West Mothes & Mathias Lund Ahrn
+ *
+ */
+
 const displayQ4Choices = () => {
     let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
     q4ChoicesArray = _.shuffle(q4ChoicesArray);
