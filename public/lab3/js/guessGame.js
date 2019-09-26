@@ -209,7 +209,7 @@ $(document).ready((key, value) => {
             wrongAnswer(6);
         }
 
-        if(q7Response == 1){
+        if(q7Response == 0){
             rightAnswer(7);
         } else {
             wrongAnswer(7);
