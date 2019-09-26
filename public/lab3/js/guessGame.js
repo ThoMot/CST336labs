@@ -96,7 +96,18 @@ function validateBlueColor(blueAnswer) {
     return correct === 3;
 }
 
-$(document).ready((key, value) => {
+function saveScore(score) {
+    let scoreHistory = [];
+    if (localStorage.length === 0) {
+        scoreHistory.push(score);
+    } else {
+        scoreHistory = JSON.parse(localStorage.getItem("scoreHistory"));
+        scoreHistory.push(score);
+    }
+    localStorage.setItem("scoreHistory", JSON.stringify(scoreHistory));
+}
+
+$(document).ready(() => {
 
     // Variables
     let score = 0;
@@ -232,14 +243,8 @@ $(document).ready((key, value) => {
         }
         $("#totalScore").html(`Total Score: ${score}`);
 
-        let scoreHistory = [];
-        if (localStorage.length === 0) {
-            scoreHistory.push(score);
-        } else {
-            scoreHistory = JSON.parse(localStorage.getItem("scoreHistory"));
-            scoreHistory.push(score);
+        if (window.localStorage) {
+            saveScore(score);
         }
-        localStorage.setItem("scoreHistory", JSON.stringify(scoreHistory));
-
     };
 });
