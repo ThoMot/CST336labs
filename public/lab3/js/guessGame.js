@@ -248,6 +248,11 @@ $(document).ready(() => {
         }
         $("#totalScore").html(`Total Score: ${score}`);
 
+        $("#congrats").html("");
+        if(score == 100){
+            $("#congrats").html("CONGRATULATIONS you got 100 points! you must be a US expert!")
+        }
+
         if (window.localStorage) {
             saveScore(score);
         }
