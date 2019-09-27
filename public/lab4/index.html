@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>AJAX: Sign Up Page</title>
+    <title class="">AJAX: Sign Up Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/signUp.css">
 
 </head>
@@ -33,6 +34,23 @@
 </form>
 
 <script>
+
+    $(document).ready(function () {
+        $.ajax({
+            method: "GET",
+            url: "https://cst336.herokuapp.com/projects/api/state_abbrAPI.php",
+            dataType: "json",
+            data: {"usps" : $("#state").val() },
+            success: function(result,status) {
+
+                $("#state").html("<option> Select One </option>");
+                for (let i=0; i < result.length; i++){
+                    $("#state").append("<option>" + result[i].usps + "</option>");
+                }
+            }
+        });//ajax
+    }); //calling the states on document ready
+
     var usernameAvailable = false;
     //Displaying City from API after typing a zip code
     $("#zip").on("change", function () {
@@ -52,7 +70,6 @@
         });//ajax
 
     }); //zip
-
 
     $("#state").on("change", function () {
         // alert($("#zip").val());
