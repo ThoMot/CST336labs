@@ -112,7 +112,23 @@ function saveScore(score) {
     localStorage.setItem("scoreHistory", JSON.stringify(scoreHistory));
 }
 
+function getHighscore() {
+    let highscore;
+    let scoreHistory = [];
+    if (localStorage.getItem("scoreHistory")) {
+        scoreHistory = JSON.parse(localStorage.getItem("scoreHistory"));
+        highscore = Math.max(...scoreHistory);
+    }
+    if(highscore) {
+        $("#highScore").html(`Current highscore: ${highscore}`);
+    }
+}
+
 $(document).ready(() => {
+
+    if (window.localStorage) {
+        getHighscore();
+    }
 
     // Variables
     let score = 0;
@@ -250,6 +266,7 @@ $(document).ready(() => {
 
         if (window.localStorage) {
             saveScore(score);
+            getHighscore();
         }
     };
 });
