@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/signUp.css">
 
 </head>
@@ -16,20 +17,65 @@
 <form id="signupForm" method="get" action="welcome.html">
     <fieldset>
         <legend>Sign Up</legend>
-        <div><label>First Name:</label><input type="text"></div>
-        <div><label>Last Name:</label><input type="text"></div>
-        <div><label>Email:</label><input type="text"></div>
-        <div><label>Phone Number:</label><input type="text"></div>
-        <div><label>Zip Code:</label><input type="text" name="zip" id="zip"></div>
-        <div><label>City:</label><span id="city"></span></div>
-        <div><label>Latitude:</label><span id="latitude"></span></div>
-        <div><label>Longitude:</label><span id="longitude"></span></div>
-        <div><label>State:</label><select id="state"></select></div>
-        <div><label>Select a County:</label><select id="county"></select></div>
-        <div><label>Desired Username:</label><input type="text" id="userName"><span id="error"></span></div>
-        <div><label>Password:</label><input id="password" type="password"><span class="bg-info" id="passError"></span></div>
-        <div><label>Type Password Again:</label><input id="passAgain" type="password"><span id="passAgainError"></span></div>
-        <div><input type="submit" value="Sign up!"></div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">First Name:</label>
+                <input id="firstName" class="form-control" placeholder="First Name" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Last Name:</label>
+                <input id="lastName" class="form-control" placeholder="Last Name" type="text">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="email">Email:</label>
+                <input id="email" class="form-control" placeholder="email" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Phone Number:</label>
+                <input id="phone" class="form-control" placeholder="Phone Number" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="zip">Zip Code:</label>
+                <input placeholder="Zip Code" class="form-control" type="text" name="zip" id="zip">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="city">City:</label>
+                <span id="city" class="form-control bg-secondary"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="latitude">Latitude:</label>
+                <span id="latitude" class="form-control bg-secondary"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="longitude">Longitude:</label>
+                <span id="longitude" class="form-control bg-secondary"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="state">State:</label>
+                <select id="state" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="county">Select a County:</label>
+                <select id="county" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="userName">Desired Username:</label>
+                <input type="text" id="userName" class="form-control">
+                <span id="error"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="password">Password:</label>
+                <input id="password" class="form-control" type="password">
+                <span class="bg-info" id="passError"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Type Password Again:</label>
+                <input id="passAgain" class="form-control" type="password">
+                <span id="passAgainError">
+                </span>
+            </div>
+        </div>
+            <div><input type="submit" value="Sign up!"></div>
     </fieldset>
 </form>
 
