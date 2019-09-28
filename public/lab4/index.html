@@ -102,18 +102,17 @@
     </div>
 </div>
 <script>
-
+    /* global $ */
     $(document).ready(function () {
         $.ajax({
             method: "GET",
             url: "https://cst336.herokuapp.com/projects/api/state_abbrAPI.php",
             dataType: "json",
-            data: {"usps": $("#state").val()},
-            success: function (result, status) {
-
+            data: {"usps" : $("#state").val() },
+            success: function(result,status) {
                 $("#state").html("<option> Select One </option>");
-                for (let i = 0; i < result.length; i++) {
-                    $("#state").append("<option>" + result[i].usps + "</option>");
+                for (let i=0; i < result.length; i++){
+                    $("#state").append(`<option id="${result[i].usps}">` + result[i].state + "</option>");
                 }
             }
         });//ajax
@@ -145,16 +144,14 @@
             method: "GET",
             url: "https://cst336.herokuapp.com/projects/api/countyListAPI.php",
             dataType: "json",
-            data: {"state": $("#state").val()},
-            success: function (result, status) {
-
+            data: {"state" : $("#state")[0].selectedOptions[0].id },
+            success: function(result,status) {
                 $("#county").html("<option> Select One </option>");
                 for (let i = 0; i < result.length; i++) {
                     $("#county").append("<option>" + result[i].county + "</option>");
                 }
             }
         });//ajax
-
     }); //county
 
     $("#userName").on("change", function () {
