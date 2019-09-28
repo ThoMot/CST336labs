@@ -121,8 +121,8 @@ function getScoreInfo() {
         });
         let highscore = Math.max(...scores);
 
-        $("#numberOfAttempts").html(attempts);
-        $("#scoreTracker").html(scoreHistory);
+        $("#numberOfAttempts").html(`Number of attempts: ${attempts}`);
+        $("#scoreTracker").html(`Score history: ${scoreHistory}`);
 
         if (highscore) {
             $("#highScore").html(`Current highscore: ${highscore}`);
