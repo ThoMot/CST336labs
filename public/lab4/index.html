@@ -42,7 +42,6 @@
             dataType: "json",
             data: {"usps" : $("#state").val() },
             success: function(result,status) {
-                console.log(result);
                 $("#state").html("<option> Select One </option>");
                 for (let i=0; i < result.length; i++){
                     $("#state").append(`<option id="${result[i].usps}">` + result[i].state + "</option>");
