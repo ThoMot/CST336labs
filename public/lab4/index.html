@@ -34,7 +34,7 @@
 </form>
 
 <script>
-
+    /* global $ */
     $(document).ready(function () {
         $.ajax({
             method: "GET",
@@ -42,10 +42,10 @@
             dataType: "json",
             data: {"usps" : $("#state").val() },
             success: function(result,status) {
-
+                console.log(result);
                 $("#state").html("<option> Select One </option>");
                 for (let i=0; i < result.length; i++){
-                    $("#state").append("<option>" + result[i].usps + "</option>");
+                    $("#state").append(`<option id="${result[i].usps}">` + result[i].state + "</option>");
                 }
             }
         });//ajax
@@ -77,7 +77,7 @@
             method: "GET",
             url: "https://cst336.herokuapp.com/projects/api/countyListAPI.php",
             dataType: "json",
-            data: {"state" : $("#state").val() },
+            data: {"state" : $("#state")[0].selectedOptions[0].id },
             success: function(result,status) {
 
                 $("#county").html("<option> Select One </option>");
@@ -86,7 +86,6 @@
                 }
             }
         });//ajax
-
     }); //county
 
     $("#userName").on("change", function () {
