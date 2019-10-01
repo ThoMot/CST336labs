@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title></title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <style>
+        tr, td{
+            border:1px gray solid;
+            text-align: right;
+            padding:5px;
+        }
+
+        body, th {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 class="jumbotron"> Holiday Shopping  </h1>
+
+<h2> Cart </h2>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th> Quantity </th>
+        <th>Total</th>
+    </tr>
+
+    <tr>
+        <td>Fruit Cake</td>
+        <td>$ <span id="item1Price">30</span></td>
+        <td><input type="text" class="qty" id="qty_item1" size="5" value="1">  </td>
+        <td>$<span id="totalItem1">30</span></td>
+    </tr>
+
+    <tr>
+        <td>Piñata (Medium size)</td>
+        <td>$ <span id="item2Price">20</span></td>
+        <td><input type="text" class="qty" id="qty_item2" size="5" value="2">  </td>
+        <td>$<span id="totalItem2">40</span></td>
+    </tr>
+
+    <tr>
+        <td>Shipping</td>
+        <td></td>
+        <td></td>
+        <td>$<span id="shippingCost">10</span></td>
+    </tr>
+
+    <tr>
+        <td>Subtotal</td>
+        <td> </td>
+        <td> </td>
+        <td>$<span id="subtotal">80</span></td>
+    </tr>
+
+    <tr>
+        <td>Tax (10%)</td>
+        <td></td>
+        <td></td>
+        <td>$<span id="tax">8</span></td>
+    </tr>
+
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td>$<span id="total">88</span></td>
+    </tr>
+</table>
+
+<h3>Shipping & handling</h3>
+<input id="shipping1" type="radio" value="15" name="shippingChoice">
+<label for="shipping1">Next-day Delivery: $15.00</label><br>
+<input id="shipping2" type="radio" value="10" name="shippingChoice">
+<label for="shipping2">Three-day Delivery: $10.00</label><br>
+<input id="shipping3" type="radio" value="5" name="shippingChoice">
+<label for="shipping3">Regular (5-8 days): $5.00</label><br>
+<br><br>
+
+<input type="checkbox" id="terms" name="terms">
+<span id="termsMessage" >I accept the terms of this purchase.</span>
+
+<br><br>
+<span id="error"></span>
+<input id="confirm" type="submit" value="CONFIRM PURCHASE" />
+
+<script>
+    $("#qty_item1").on("change", function() {
+        //const item1 = $("#item1Price")[0].innerText.split("$")[1];
+        const item1 = $("#item1Price").html();
+        console.log(item1);
+        $("#totalItem1").html(item1* $("#qty_item1").val());
+        updateSubTotal();
+        updateTax();
+        updateTotal();
+    });
+
+    $("#qty_item2").on("change", function() {
+        //const item2 = $("#item2Price")[0].innerText.split("$")[1];
+        const item2 = $("#item2Price").html();
+        console.log(item2);
+        $("#totalItem2").html(item2* $("#qty_item2").val());
+        updateSubTotal();
+        updateTax();
+        updateTotal();
+    });
+
+    function updateSubTotal() {
+        $("#subtotal").html(parseInt($("#totalItem1").html()) + parseInt($("#totalItem2").html()) + parseInt($("#shippingCost").html()));
+    }
+
+    function updateTax() {
+        $("#tax").html(parseInt($("#subtotal").html()) * 0.1);
+    }
+
+    function updateTotal() {
+        $("#total").html(parseInt($("#subtotal").html()) + parseInt($("#tax").html()) + parseInt($("#shippingCost").html()));
+    }
+
+    $("input[type=radio]").on("click", function() {
+        $("#shippingCost").html(parseInt($("input[name=shippingChoice]:checked").val()));
+        updateSubTotal();
+        updateTax();
+        updateTotal();
+    });
+
+    $("#confirm").on("click", function() {
+        if(!$("input[name=shippingChoice]:checked").val()) {
+            $("#error").html("You need to enter a shipping method").css("color", "red");
+        }
+    })
+
+
+
+
+</script>
+
+</body>
+</html>
