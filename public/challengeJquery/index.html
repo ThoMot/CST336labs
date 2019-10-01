@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title></title>
+
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+    <style>
+      tr,
+      td {
+        border: 1px gray solid;
+        text-align: right;
+        padding: 5px;
+      }
+
+      body,
+      th {
+        text-align: center;
+      }
+
+      table {
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="jumbotron">Holiday Shopping</h1>
+
+    <h2>Cart</h2>
+
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+
+      <tr>
+        <td>Fruit Cake</td>
+        <td>$30</td>
+        <td>
+          <input type="text" class="qty" id="qty_item1" size="5" value="1" />
+        </td>
+        <td id="totalItem1">$30</td>
+      </tr>
+
+      <tr>
+        <td>Piñata (Medium size)</td>
+        <td>$20</td>
+        <td>
+          <input type="text" class="qty" id="qty_item2" size="5" value="2" />
+        </td>
+        <td id="totalItem2">$40</td>
+      </tr>
+
+      <tr>
+        <td>Shipping</td>
+        <td></td>
+        <td></td>
+        <td id="shippingCost">$10</td>
+      </tr>
+
+      <tr>
+        <td>Subtotal</td>
+        <td></td>
+        <td></td>
+        <td id="subtotal">$80</td>
+      </tr>
+
+      <tr>
+        <td>Tax (10%)</td>
+        <td></td>
+        <td></td>
+        <td id="tax">$8</td>
+      </tr>
+
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td id="total">$88</td>
+      </tr>
+    </table>
+
+    <h3>Shipping & handling</h3>
+    <label for="next-day">Next day Delivery: $15.00</label>
+    <input type="radio" name="deliver" id="next-day" value="next-day" /> <br />
+    <label for="three-day">Three-day Delivery: $10.00</label>
+    <input type="radio" name="deliver" id="three-day" /><br />
+    <label for="regular">Regular (5-8 days): $5.00</label>
+    <input type="radio" name="deliver" id="regular" />
+    <br /><br />
+
+    <input type="checkbox" id="terms" name="terms" />
+    <span id="termsMessage">I accept the terms of this purchase.</span>
+
+    <br /><br />
+
+    <input type="submit" value="CONFIRM PURCHASE" />
+  </body>
+</html>
