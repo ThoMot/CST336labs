@@ -47,6 +47,7 @@
                     <div class="form-group col-md-6">
                         <label for="zip">Zip Code:</label>
                         <input class="form-control" id="zip" name="zip" placeholder="Zip Code" type="text">
+                        <span id="zipError"></span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -128,11 +129,15 @@
             dataType: "json",
             data: {"zip": $("#zip").val()},
             success: function (result, status) {
-
-                //alert(result.city);
-                $("#city").html(result.city);
-                $("#latitude").html(result.latitude);
-                $("#longitude").html(result.longitude);
+                if(!result){
+                    $("#zipError").html("Not a valid zip code").css("color", "red");
+                } else {
+                    $("#zipError").html("");
+                    //alert(result.city);
+                    $("#city").html(result.city);
+                    $("#latitude").html(result.latitude);
+                    $("#longitude").html(result.longitude);
+                }
             }
         });//ajax
 
