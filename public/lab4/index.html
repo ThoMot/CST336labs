@@ -187,6 +187,8 @@
 
     function isFormValid() {
         isValid = true;
+        $("#passError").html(" ");
+        $("#passAgainError").html(" ");
         if (!usernameAvailable) {
             isValid = false;
         }
