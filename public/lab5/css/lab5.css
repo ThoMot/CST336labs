@@ -1,11 +1,15 @@
-.background{
-    background-color: #e2ebf0;
+/* CSS VARIABLES */
+:root {
+  --primary: #4e6a64;
+  --bg-color: #e2ebf0;
+  --feature-bg-color: #c3cfe2;
 }
 
-.text{
-    color: #4e6a64;
+body {
+  background-color: var(--bg-color);
+  color: var(--primary);
 }
 
-.feature-color{
-    background-color: #c3cfe2;
+.feature-color {
+  background-color: var(--feature-bg-color);
 }
