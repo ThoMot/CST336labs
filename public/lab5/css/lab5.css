@@ -17,3 +17,17 @@ header {
 .feature-color {
   background-color: var(--feature-bg-color);
 }
+
+.xcenter {
+  margin: 0 auto;
+}
+
+.searchcontent {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .searchcontent {
+    width: 450px;
+  }
+}
