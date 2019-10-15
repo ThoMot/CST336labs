@@ -1,51 +1,36 @@
 const API_KEY = "13831356-14c2a0af637ced29bdc287ad0";
+const numberOfPics = 4;
 
-// Code for retrieving data from pixabay
-//   $.ajax({
-//     method: "GET",
-//     url: `https://pixabay.com/api/?key=${API_KEY}&q=sun`,
-//     dataType: "json",
-//     data: {},
-//     success: function(result, status) {
-//       console.log(result);
-//     }
-//   }); //ajax
+const defaultSearch = ["flowers", "piano", "saxofon", "spring"];
 
 $(function() {
+  const searchNum = Math.floor(Math.random() * defaultSearch.length);
+
+  searchPixa(null, defaultSearch[searchNum]);
+});
+
+function searchPixa(orientation, q) {
   $.ajax({
     method: "GET",
-    url: `https://pixabay.com/api/?key=${API_KEY}&q=sun`,
+    url: "https://pixabay.com/api/",
     dataType: "json",
-    data: {},
+    data: {
+      key: API_KEY,
+      q: q,
+      orientation: orientation || "",
+      per_page: numberOfPics
+    },
     success: function(result, status) {
       console.log(result);
       const pictures = result.hits;
       generatePics(pictures);
     }
   }); //ajax
-});
+}
 
 function generatePics(pictures) {
+  $("#pictures").empty(); // Removes all childnodes from pictures div
   pictures.forEach(picture => {
-    // $("<div></div>", {
-    //   id: "likes",
-    //   class: "row"
-    // }).appendTo("#pictures");
-    // $(`<p>Likes: ${picture.likes}</p>`, {
-    //   class: "col-6"
-    // }).appendTo("#likes");
-    // $("<div></div>", {
-    //   id: "picrow",
-    //   class: "row"
-    // }).appendTo("#likes");
-    // $("<div></div>", {
-    //   id: picture.id,
-    //   class: "row"
-    // }).appendTo("#pictures");
-    // $("<p></p>", {
-    //   html: "Likes: " + picture.likes
-    // }).appendTo(`#${picture.id}`);
-
     $("<div></div>", {
       id: picture.id,
       class: "col-6 mt-2"
@@ -53,7 +38,6 @@ function generatePics(pictures) {
     $("<img />", {
       id: picture.id,
       src: picture.largeImageURL,
-      width: 300,
       class: "col-12"
     }).appendTo($(`#${picture.id}`));
     $("<p></p>", {
@@ -61,5 +45,18 @@ function generatePics(pictures) {
       class: "text-center"
     }).appendTo(`#${picture.id}`);
   });
-  //$("<label for='1867285'>asdasd</label>").appendTo($("#pictures"));
 }
+
+$("#search").on("click", function() {
+  if (!$("#keyword").val()) {
+    $("#searcherror").html("Search need an input!");
+  } else {
+    $("#searcherror").empty();
+    const orientation = $("#orientation").val();
+    const q = $("#keyword")
+      .val()
+      .toLowerCase()
+      .trim();
+    searchPixa(orientation, q);
+  }
+});
