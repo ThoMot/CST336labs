@@ -33,17 +33,17 @@ function generatePics(pictures) {
   pictures.forEach(picture => {
     $("<div></div>", {
       id: picture.id,
-      class: "col-6 mt-2"
+      class: "col-6 mt-2 picture-divs"
     }).appendTo("#pictures");
+    $("<p></p>", {
+      html: "Likes: " + picture.likes,
+      class: "text-center mb-0"
+    }).appendTo(`#${picture.id}`);
     $("<img />", {
       id: picture.id,
       src: picture.largeImageURL,
-      class: "col-12"
+      class: "col-12 pictures"
     }).appendTo($(`#${picture.id}`));
-    $("<p></p>", {
-      html: "Likes: " + picture.likes,
-      class: "text-center"
-    }).appendTo(`#${picture.id}`);
   });
 }
 

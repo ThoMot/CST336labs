@@ -5,7 +5,12 @@
   --feature-bg-color: #c3cfe2;
 }
 
+html{
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background-color: var(--bg-color);
   color: var(--primary);
 }
@@ -26,8 +31,48 @@ header {
   width: 100%;
 }
 
+#content{
+  height: 90%;
+  overflow: auto;
+}
+
+.navbar{
+  height: 10%;
+}
+
+.picture-divs{
+  text-align: center;
+  height: 5em;
+  width: 10em;
+}
+
+.pictures{
+  max-height: 80%;
+  width: auto;
+}
+
+#varmkun, #certinax{
+  border-radius: 50px;
+}
+
 @media (min-width: 768px) {
   .searchcontent {
     width: 550px;
   }
+
+  .picture-divs{
+    text-align: center;
+    height: 17em;
+    width: 10em;
+  }
+
+  #content{
+    height: 93%;
+    overflow: auto;
+  }
+
+  .navbar{
+    height: 7%;
+  }
+
 }
