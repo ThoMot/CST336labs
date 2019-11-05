@@ -1,0 +1,78 @@
+/* CSS VARIABLES */
+:root {
+  --primary: #4e6a64;
+  --bg-color: #e2ebf0;
+  --feature-bg-color: #c3cfe2;
+}
+
+html{
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--primary);
+}
+
+header {
+  background-color: #a1c0d0;
+}
+
+.feature-color {
+  background-color: var(--feature-bg-color);
+}
+
+.xcenter {
+  margin: 0 auto;
+}
+
+.searchcontent {
+  width: 100%;
+}
+
+#content{
+  height: 90%;
+  overflow: auto;
+}
+
+.navbar{
+  height: 10%;
+}
+
+.picture-divs{
+  text-align: center;
+  height: 5em;
+  width: 10em;
+}
+
+.pictures{
+  max-height: 80%;
+  width: auto;
+}
+
+#varmkun, #certinax{
+  border-radius: 50px;
+}
+
+@media (min-width: 768px) {
+  .searchcontent {
+    width: 550px;
+  }
+
+  .picture-divs{
+    text-align: center;
+    height: 17em;
+    width: 10em;
+  }
+
+  #content{
+    height: 93%;
+    overflow: auto;
+  }
+
+  .navbar{
+    height: 7%;
+  }
+
+}

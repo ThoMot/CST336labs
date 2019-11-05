@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pixabay Image Search Express Version</title>
+    <link
+            crossorigin="anonymous"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            rel="stylesheet"
+    />
+    <link href="css/lab5.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+            crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    ></script>
+</head>
+
+<body class="background">
+<div id="content">
+    <header class="container-fluid w-100 shadow-sm">
+        <h1 class="text-center p-3">Pixabay Image Search</h1>
+    </header>
+
+    <form action="/" method="get">
+    <div class="container pt-3">
+        <div class="row mt-3">
+            <span id="searcherror" class="col-12 text-center text-danger"></span>
+            <div class="searchcontent xcenter">
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+              <span class="input-group-text feature-color" id="addon-wrapping">
+                  Keyword:
+              </span>
+                    </div>
+                    <input
+                            name="keyword"
+                            aria-describedby="addon-wrapping"
+                            aria-label="keyword"
+                            class="form-control"
+                            id="keyword"
+                            type="text"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="xcenter">
+                <label for="orientation">Choose orientation:</label>
+                <select
+                        class="btn dropdown-toggle feature-color"
+                        id="orientation"
+                        name="orientation"
+                >
+                    <option value="vertical">Veritical</option>
+                    <option value="horizontal">Horizontal</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <button id="search" class="btn xcenter feature-color" type="submit">
+                Search
+            </button>
+        </div>
+
+        <div id="pictures" class="row xcenter py-4">
+            {{#images}}
+            <div class="col-6 mt-2 picture-divs">
+                <p>Likes: {{likes}}</p>
+                <img class="col-12 pictures" src={{largeImageURL}}>
+            </div>
+            {{/images}}
+        </div>
+    </div>
+    </form>
+</div>
+
+<nav class="navbar navbar-light navbar-expand-lg" style="background-color: #a1c0d0">
+    <a class="navbar-brand" href="https://github.com/ThoMot"><img id="varmkun" height="50" width="50" src="img/ThoraMothes.jpg" alt="picture of Thora"></a>
+    <a class="navbar-brand" href="https://github.com/Certinax"><img id="certinax" height="50" width="50" src="img/MathiasAhrn.jpeg" alt="picture of Mathias"></a>
+    <span class="navbar-text">
+      Made by Certinax and Varmkun 2019
+    </span>
+</nav>
+</body>
+</html>
