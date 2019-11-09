@@ -95,9 +95,9 @@ function getScoreInfo() {
 }
 
 $(document).ready(() => {
-  /*if (window.localStorage) {
-        getScoreInfo();
-    }*/
+  if (window.localStorage) {
+    getScoreInfo();
+  }
 
   // Loads the answers for question 4 when the page has loaded.
   displayQ4Choices();
@@ -217,7 +217,6 @@ $(document).ready(() => {
           // Step 5. Process the results by changing the HTML
           // to display the results of the quiz
           console.log("result of call to POST router", result);
-          //$("#q1").val(result.original.questions["1"]);
           result.results.forEach(question => {
             if (question.correct) {
               rightAnswer(question.question);
