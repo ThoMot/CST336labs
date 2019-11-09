@@ -1,0 +1,93 @@
+
+<h1 class="jumbotron">US Geography Quiz</h1>
+
+<form action="/" method="post">
+<!-- Question 1 -->
+<h3><span id="markImg1"></span>What is the capital of California?</h3>
+<input type="text" name="q1" id="q1" value={{original.q1}}>
+<div id="q1Feedback"></div>
+<br>
+
+<!-- Question 2 -->
+<h3><span id="markImg2"></span>What is the longest river?</h3>
+<select id="q2" name="q2">
+    <option value="" {{#ifEquals original.q2 ""}} selected {{/ifEquals}}>Select One</option>
+    <option value="ms" {{#ifEquals original.q2 "ms"}} selected {{/ifEquals}}>Mississippi</option>
+    <option value="mo" {{#ifEquals original.q2 "mo"}} selected {{/ifEquals}}>Missouri</option>
+    <option value="co" {{#ifEquals original.q2 "co"}} selected {{/ifEquals}}>Colorado</option>
+    <option value="de" {{#ifEquals original.q2 "de"}} selected {{/ifEquals}}>Delaware</option>
+</select>
+<br><br>
+<div id="q2Feedback"></div>
+<br>
+
+<!-- Question 3 -->
+<h3><span id="markImg3"></span>What presidents are carved into mount Rushmore?</h3>
+<input name="q3_1" type="checkbox" {{#ifEquals original.q3_1 "Jackson"}} checked {{/ifEquals}}  value="Jackson" id="Jackson"><label for="Jackson">A.Jackson</label>
+<input name="q3_2" type="checkbox" {{#ifEquals original.q3_2 "Franklin"}} checked {{/ifEquals}} value="Franklin" id="Franklin"><label for="Franklin">B. Franklin</label>
+<input name="q3_3" type="checkbox" {{#ifEquals original.q3_3 "Jefferson"}} checked {{/ifEquals}} value="Jefferson" id="Jefferson"><label for="Jefferson">T. Jefferson</label>
+<input name="q3_4" type="checkbox" {{#ifEquals original.q3_4 "Roosevelt"}} checked {{/ifEquals}} value="Roosevelt" id="Roosevelt"><label for="Roosevelt">T. Roosevelt</label>
+<br><br>
+<div id="q3Feedback"></div>
+<br>
+
+<!-- Question 4 -->
+<h3><span id="markImg4"></span>What is the smallest US State?</h3>
+<div id="q4Choices"></div>
+<br><br>
+<div id="q4Feedback"></div>
+<br>
+
+<!-- Question 5 -->
+<h3><span id="markImg5"></span>What image is in the Great Seal of the State of California?</h3>
+<img src="img/seal1.png" alt="Seal 1" class="q5Choice" id="seal1">
+<img src="img/seal2.png" alt="Seal 2" class="q5Choice" id="seal2">
+<img src="img/seal3.png" alt="Seal 3" class="q5Choice" id="seal3">
+<div id="q5Feedback"></div>
+<br><br>
+
+<!-- Question 6 -->
+<h3><span id="markImg6"></span>How many faces are carved into mount Rushmore?</h3>
+<input type="number" id="q6" min="0" max="6" name="q6">
+<div id="q6Feedback"></div>
+<br><br>
+
+<!-- Question 7 -->
+<h3><span id="markImg7"></span>Is the Grizzly bear the state animal of California?</h3>
+<span>True</span><input type="range" id="q7" min="0" max="1" step="1" name="q7"><span>False</span>
+<div id="q7Feedback"></div>
+<br><br>
+
+<!-- Question 8 -->
+<h3><span id="markImg8"></span>What colors does the flag of Texas have?</h3>
+<div class="flag">
+    <div class="q8item blue">
+        <div class="starContainer">
+            <div class="star"></div>
+        </div>
+    </div>
+    <div class="stripes">
+        <div class="q8item white"></div>
+        <div class="q8item red"></div>
+    </div>
+</div>
+<input type="color" name="colorz" id="colorz">
+<label for="colorz">Select color for each block in the flag</label>
+<div id="q8Feedback"></div>
+<br><br>
+
+<h3 id="validationFdbk" class="bg-danger text-white"></h3>
+<button class="btn btn-primary submit">Submit Quiz</button>
+</form>
+
+<br><br>
+<!-- Highscore / Score tracking-->
+<h3>Score Tracking</h3>
+<h2 id="totalScore" class="text-info"></h2>
+<h2 id="congrats" class="text-info"></h2>
+<h3 id="highScore" class="text-primary"></h3>
+<h4 id="numberOfAttempts"></h4>
+<h4 id="scoreTracker"></h4>
+<br>
+<script src="js/guessGame.js"></script>
+
