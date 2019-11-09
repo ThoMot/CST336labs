@@ -197,9 +197,9 @@ $(document).ready(() => {
             q2: q2Response,
             q3: {
               _1: $("#Jackson").is(":checked"),
-              _2: $("#Franklin").is("#checked"),
-              _3: $("#Jefferson").is("#checked"),
-              _4: $("#Roosevelt").is("#checked")
+              _2: $("#Franklin").is(":checked"),
+              _3: $("#Jefferson").is(":checked"),
+              _4: $("#Roosevelt").is(":checked")
             },
             q4: q4Response,
             q5: q5Response,

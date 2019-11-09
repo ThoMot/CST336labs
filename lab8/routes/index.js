@@ -9,6 +9,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
+  console.log(req.body.questions);
   const results = gradeQuiz(req.body.questions);
   res.json(results);
 });

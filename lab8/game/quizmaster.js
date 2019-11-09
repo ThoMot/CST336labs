@@ -74,7 +74,7 @@ module.exports = gradeQuiz = questions => {
   }
 
   // Question 3
-  if (q3._1 && q3._2 && !q3_3 && !q3_4) {
+  if (!q3._1 && !q3._2 && q3._3 && q3._4) {
     populateResult(3, true);
   } else {
     populateResult(3, false);
