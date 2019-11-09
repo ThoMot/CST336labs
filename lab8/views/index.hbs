@@ -1,7 +1,5 @@
-
 <h1 class="jumbotron">US Geography Quiz</h1>
 
-<form action="/" method="post">
 <!-- Question 1 -->
 <h3><span id="markImg1"></span>What is the capital of California?</h3>
 <input type="text" name="q1" id="q1" value={{original.q1}}>
@@ -11,11 +9,11 @@
 <!-- Question 2 -->
 <h3><span id="markImg2"></span>What is the longest river?</h3>
 <select id="q2" name="q2">
-    <option value="" {{#ifEquals original.q2 ""}} selected {{/ifEquals}}>Select One</option>
-    <option value="ms" {{#ifEquals original.q2 "ms"}} selected {{/ifEquals}}>Mississippi</option>
-    <option value="mo" {{#ifEquals original.q2 "mo"}} selected {{/ifEquals}}>Missouri</option>
-    <option value="co" {{#ifEquals original.q2 "co"}} selected {{/ifEquals}}>Colorado</option>
-    <option value="de" {{#ifEquals original.q2 "de"}} selected {{/ifEquals}}>Delaware</option>
+    <option value="">Select One</option>
+    <option value="ms">Mississippi</option>
+    <option value="mo">Missouri</option>
+    <option value="co">Colorado</option>
+    <option value="de">Delaware</option>
 </select>
 <br><br>
 <div id="q2Feedback"></div>
@@ -23,10 +21,10 @@
 
 <!-- Question 3 -->
 <h3><span id="markImg3"></span>What presidents are carved into mount Rushmore?</h3>
-<input name="q3_1" type="checkbox" {{#ifEquals original.q3_1 "Jackson"}} checked {{/ifEquals}}  value="Jackson" id="Jackson"><label for="Jackson">A.Jackson</label>
-<input name="q3_2" type="checkbox" {{#ifEquals original.q3_2 "Franklin"}} checked {{/ifEquals}} value="Franklin" id="Franklin"><label for="Franklin">B. Franklin</label>
-<input name="q3_3" type="checkbox" {{#ifEquals original.q3_3 "Jefferson"}} checked {{/ifEquals}} value="Jefferson" id="Jefferson"><label for="Jefferson">T. Jefferson</label>
-<input name="q3_4" type="checkbox" {{#ifEquals original.q3_4 "Roosevelt"}} checked {{/ifEquals}} value="Roosevelt" id="Roosevelt"><label for="Roosevelt">T. Roosevelt</label>
+<input name="q3_1" type="checkbox" value="Jackson" id="Jackson"><label for="Jackson">A.Jackson</label>
+<input name="q3_2" type="checkbox" value="Franklin" id="Franklin"><label for="Franklin">B. Franklin</label>
+<input name="q3_3" type="checkbox" value="Jefferson" id="Jefferson"><label for="Jefferson">T. Jefferson</label>
+<input name="q3_4" type="checkbox" value="Roosevelt" id="Roosevelt"><label for="Roosevelt">T. Roosevelt</label>
 <br><br>
 <div id="q3Feedback"></div>
 <br>
@@ -78,7 +76,6 @@
 
 <h3 id="validationFdbk" class="bg-danger text-white"></h3>
 <button class="btn btn-primary submit">Submit Quiz</button>
-</form>
 
 <br><br>
 <!-- Highscore / Score tracking-->
@@ -90,4 +87,3 @@
 <h4 id="scoreTracker"></h4>
 <br>
 <script src="js/guessGame.js"></script>
-
