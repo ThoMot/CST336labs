@@ -26,6 +26,13 @@ $(document).ready(() => {
     }
   });
 
+  $("#categorySearch").on("click", function() {
+    const categoryValue = $("#categorySelect").val();
+    if (categoryValue !== "default") {
+      searchCategory(categoryValue);
+    }
+  });
+
 });
 
 function listAuthors() {
@@ -165,6 +172,29 @@ function searchAuthor(authorValue) {
       console.log("error calling to POST router", status);
     },
     complete: function() {}
+  });
+}
+
+function searchCategory(categoryValue) {
+  $.ajax({
+    url: "/categorySearch",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      category: categoryValue
+    }),
+    success: function (result) {
+      $("#quotesDiv").empty();
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
   });
 }
 
