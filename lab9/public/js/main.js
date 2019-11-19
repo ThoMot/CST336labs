@@ -110,7 +110,9 @@ function searchGender(genderValue) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: genderValue,
+    data: JSON.stringify({
+      gender: genderValue
+    }),
     success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
@@ -157,7 +159,9 @@ function searchAuthor(authorValue) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: authorValue,
+    data: JSON.stringify({
+      author: authorValue
+    }),
     success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
