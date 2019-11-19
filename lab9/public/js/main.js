@@ -32,6 +32,14 @@ $(document).ready(() => {
       searchAuthor(authorValue);
     }
   });
+
+  $("#categorySearch").on("click", function() {
+    const categoryValue = $("#categorySelect").val();
+    if (categoryValue !== "default") {
+      searchCategory(categoryValue);
+    }
+  });
+
 });
 
 function listAuthors() {
@@ -109,7 +117,9 @@ function searchGender(genderValue) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: genderValue,
+    data: JSON.stringify({
+      gender: genderValue
+    }),
     success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
@@ -156,7 +166,9 @@ function searchAuthor(authorValue) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: authorValue,
+    data: JSON.stringify({
+      author: authorValue
+    }),
     success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
@@ -170,14 +182,15 @@ function searchAuthor(authorValue) {
   });
 }
 
+
 function getAuthorInfo(authorName) {
   $.ajax({
     url: "/allAuthorInfo",
-    method: "post",
+     method: "post",
     contentType: "application/json",
     dataType: "json",
     data: JSON.stringify({
-      authorName: authorName
+       authorName: authorName
     }),
     success: function(result) {
       updateModal(result);
@@ -185,7 +198,31 @@ function getAuthorInfo(authorName) {
     error: function(xhr, status) {
       console.log("error calling to POST router", status);
     },
-    complete: function() {}
+    complete: function () {
+    }
+  });
+}
+
+function searchCategory(categoryValue) {
+  $.ajax({
+    url: "/categorySearch",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      category: categoryValue
+    }),
+    success: function (result) {
+      $("#quotesDiv").empty();
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
   });
 }
 
