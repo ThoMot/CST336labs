@@ -1,6 +1,8 @@
 const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 app.set("view engine", "hbs");
