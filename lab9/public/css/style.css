@@ -11,3 +11,11 @@ body {
 .content {
   flex-grow: 1;
 }
+
+.input-button{
+  cursor: pointer;
+}
+
+.input-button:active{
+  background-color: #B2B4B5;
+}
