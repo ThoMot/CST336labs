@@ -82,4 +82,27 @@ router.post("/keywordSearch", function(req, res) {
   connection.end();
 });
 
+
+router.post("/genderSearch", function(req, res) {
+  const connection = createConnection();
+  const searchParam = req.body.gender;
+  const query = `SELECT q.quote, CONCAT(a.firstName,' ',a.lastName) as 'author' FROM l9_quotes q INNER JOIN l9_author a ON a.authorId = q.authorId WHERE a.sex LIKE ('${searchParam}')`;
+  connection.execute(query, function(err, result, fields) {
+    if (err) {
+      res.json(err);
+    }
+    if (result) {
+      if (result.length > 0) {
+        res.json(result);
+      } else {
+        res.json({
+          message: "No matches for given search",
+          error: 1
+        });
+      }
+    }
+  });
+  connection.end();
+});
+
 module.exports = router;
