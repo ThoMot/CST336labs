@@ -61,11 +61,11 @@ function listCategories() {
     dataType: "json",
     success: function(result) {
       console.log(result);
-      // result.forEach(author => {
-      //   $("#authorSelect").append(
-      //     `<option value=${author.firstName} ${author.lastName}>${author.firstName} ${author.lastName}</option>`
-      //   );
-      // });
+       result.forEach(category => {
+        $("#categorySelect").append(
+           `<option value=${category.category}>${category.category}</option>`
+         );
+       });
     },
     error: function(xhr, status) {
       console.log("error calling to POST router", status);
