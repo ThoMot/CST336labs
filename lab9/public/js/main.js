@@ -34,13 +34,13 @@ function listGenders() {
     success: function (result) {
       console.log(result);
       result.forEach(gender => {
-        if (gender.sex == "F") {
+        if (gender.sex === "F") {
           $("#genderSelect").append(
-              `<option value="Female">Female</option>`
+              `<option value=${gender.sex}>Female</option>`
           );
-        } else if (gender.sex == "M") {
+        } else if (gender.sex === "M") {
           $("#genderSelect").append(
-              `<option value="Male">Male</option>`
+              `<option value=${gender.sex}>Male</option>`
           );
         }
       });
