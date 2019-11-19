@@ -10,6 +10,13 @@ $(document).ready(() => {
     }
   });
 
+  // Adding eventlisteners for author in quotes
+  $("#quotesDiv").on("click", "a", function() {
+    console.log($(this)[0].text);
+    const authorName = $(this)[0].text;
+    //getAuthorInfo(authorName);
+  });
+
   $("#keywordSearch").on("click", function() {
     const keywordValue = $("#keyword").val();
     if (keywordValue !== "") {
@@ -25,7 +32,6 @@ $(document).ready(() => {
       searchAuthor(authorValue);
     }
   });
-
 });
 
 function listAuthors() {
@@ -164,11 +170,30 @@ function searchAuthor(authorValue) {
   });
 }
 
+function getAuthorInfo(authorName) {
+  $.ajax({
+    url: "/allAuthorInfo",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      authorName: authorName
+    }),
+    success: function(result) {
+      updateModal(result);
+    },
+    error: function(xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function() {}
+  });
+}
+
 function displayQuote(author, quote) {
   const quoteResult = `<div class="card my-2">
             <div class="card-body">
                 <div class="card-title">
-                    Author: <a href="#" data-toggle="modal" data-target="#exampleModal">${author}</a>
+                    Author: <a href="#" class="event" data-toggle="modal" data-target="#exampleModal">${author}</a>
                 </div>
             <hr align="left" width="40%">
                 ${quote}
@@ -184,4 +209,28 @@ function displayError(message) {
       </div>
     </div>`;
   $("#quotesDiv").append(quoteResult);
+}
+
+function updateModal(author) {
+  $(".card-list").empty();
+  const {
+    name,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  } = author;
+
+  $(".card-title").text(`${name}`);
+  $(".card-list").append(`<li>Date of birth: ${dob}`);
+  $(".card-list").append(`<li>Date of death: ${dod}`);
+  $(".card-list").append(`<li>Gender: ${sex === "M" ? "Male" : "Female"}`);
+  $(".card-list").append(`<li>Profession: ${profession}`);
+  $(".card-list").append(`<li>Country: ${country}`);
+  $("#card-img").setAttr("src", `${portrait}`);
+  $("#card-img").setAttr("alt", `portrait of ${name}`);
+  $(".card-text").text(`${biography}`);
 }
