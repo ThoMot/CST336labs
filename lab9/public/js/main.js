@@ -12,16 +12,28 @@ $(document).ready(() => {
 
   $("#keywordSearch").on("click", function() {
     const keywordValue = $("#keyword").val();
+<<<<<<< HEAD
     if (keywordValue === "") {
       $("#keyword").attr("placeholder", "Please input a search word");
+=======
+    if(keywordValue !== ""){
+      searchKeyword(keywordValue.trim());
+>>>>>>> 92911490242d48ea64704bbfecd3af5e04b6d739
     } else {
-      searchKeyword(keywordValue);
+      $("#keyword").attr("placeholder", "Please input a search word");
+    }
+  });
+
+  $("#authorSearch").on("click", function () {
+    const authorValue = $("#authorSelect").val();
+    if(authorValue !== "default") {
+      searchAuthor(authorValue);
     }
   });
 });
 
 function listAuthors() {
-  $.ajax({
+$.ajax({
     url: "/authors",
     method: "get",
     contentType: "application/json",
@@ -30,7 +42,7 @@ function listAuthors() {
       console.log(result);
       result.forEach(author => {
         $("#authorSelect").append(
-          `<option value=${author.firstName} ${author.lastName}>${author.firstName} ${author.lastName}</option>`
+            `<option value=${author.lastName}>${author.firstName} ${author.lastName}</option>`
         );
       });
     },
@@ -130,6 +142,30 @@ function searchKeyword(keyword) {
   });
 }
 
+<<<<<<< HEAD
+=======
+function searchAuthor(authorValue) {
+  $.ajax({
+    url: "/authorSearch",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: authorValue,
+    success: function (result) {
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
+  });
+}
+
+
+>>>>>>> 92911490242d48ea64704bbfecd3af5e04b6d739
 function displayQuote(author, quote) {
   const quoteResult = `<div class="card my-2">
             <div class="card-body">
