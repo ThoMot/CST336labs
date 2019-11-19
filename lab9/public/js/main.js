@@ -84,7 +84,7 @@ function listCategories() {
 function searchGender(genderValue) {
   $.ajax({
     url: "/genderSearch",
-    method: "get",
+    method: "post",
     contentType: "application/json",
     dataType: "json",
     data: genderValue,
@@ -105,13 +105,13 @@ function searchGender(genderValue) {
 function displayQuote(author, quote) {
   const quoteResult =
         `<div class="card my-2">
-        <div class="card-body">
-        <div class="card-title">
-        Author: ${author}
-        </div>
-        <hr align="left" width="40%">
-          ${quote}
-        </div>
+            <div class="card-body">
+                <div class="card-title">
+                    Author: ${author}
+                </div>
+            <hr align="left" width="40%">
+                ${quote}
+            </div>
         </div>`;
   $("#quotesDiv").append(quoteResult);
 }
