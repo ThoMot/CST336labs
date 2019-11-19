@@ -103,7 +103,9 @@ function searchGender(genderValue) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: genderValue,
+    data: JSON.stringify({
+      gender: genderValue
+    }),
     success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
