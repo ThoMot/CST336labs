@@ -20,7 +20,7 @@
       <label class="input-group-text" for="categorySelect">Category</label>
     </div>
     <select class="custom-select" id="categorySelect">
-      <option selected>Select category</option>
+      <option selected value="default">Select category</option>
     </select>
     <div class="input-group-append">
       <span class="input-group-text input-button feature-color" id="categorySearch">Search</span>
@@ -33,7 +33,7 @@
       <label class="input-group-text" for="authorSelect">Author</label>
     </div>
     <select class="custom-select" id="authorSelect">
-      <option selected>Select author</option>
+      <option selected value="default">Select author</option>
     </select>
     <div class="input-group-append">
       <span class="input-group-text input-button feature-color" id="authorSearch">Search</span>
@@ -46,7 +46,7 @@
       <label class="input-group-text" for="genderSelect">Gender</label>
     </div>
     <select class="custom-select" id="genderSelect">
-      <option selected>Select gender</option>
+      <option selected value="default">Select gender</option>
     </select>
     <div class="input-group-append">
       <span class="input-group-text input-button feature-color" id="genderSearch">Search</span>
@@ -57,24 +57,7 @@
 <hr>
 
 <h3 class="text-center">Quotes: </h3>
-<div class="card my-2">
-  <div class="card-body">
-    <div class="card-title">
-      <p>Author: <a href="#" data-toggle="modal" data-target="#exampleModal">name</a></p>
-    </div>
-    <hr align="left" width="40%">
-    This is the quote section...
-  </div>
-</div>
-
-<div class="card my-2">
-  <div class="card-body">
-    <div class="card-title">
-      Author: name
-    </div>
-    <hr align="left" width="40%">
-    This is the quote section...
-  </div>
+<div id="quotesDiv">
 </div>
 
 

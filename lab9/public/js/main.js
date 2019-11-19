@@ -3,8 +3,12 @@ $(document).ready(() => {
   listGenders();
   listCategories();
 
-  $("#")
-
+  $("#genderSearch").on("click", function () {
+    const genderValue = $("#genderSelect").val();
+    if(genderValue !== "default") {
+      searchGender(genderValue);
+    }
+  })
 });
 
 function listAuthors() {
@@ -76,3 +80,39 @@ function listCategories() {
     complete: function() {}
   });
 }
+
+function searchGender(genderValue) {
+  $.ajax({
+    url: "/genderSearch",
+    method: "get",
+    contentType: "application/json",
+    dataType: "json",
+    data: genderValue,
+    success: function (result) {
+      console.log(result);
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
+  });
+}
+
+function displayQuote(author, quote) {
+  const quoteResult =
+        `<div class="card my-2">
+        <div class="card-body">
+        <div class="card-title">
+        Author: ${author}
+        </div>
+        <hr align="left" width="40%">
+          ${quote}
+        </div>
+        </div>`;
+  $("#quotesDiv").append(quoteResult);
+}
+
