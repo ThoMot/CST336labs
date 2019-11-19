@@ -1,0 +1,30 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.content {
+  flex-grow: 1;
+}
+
+.input-button{
+  cursor: pointer;
+}
+
+.input-button:active{
+  background-color: #B2B4B5;
+}
+
+.navbar{
+  background-color: #e9ecef;
+}
+
+.card-body{
+  background-color: #e9ecef;
+}

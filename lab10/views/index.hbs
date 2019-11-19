@@ -1,6 +1,96 @@
-<html>
-<body>
-<h1>{{title}}</h1>
-</body>
+<h1 class="text-center">{{ title }}</h1>
 
-</html>
+
+<div class="container">
+  <p>Search for quotes: </p>
+
+  <div class="input-group flex-nowrap mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text feature-color" id="addon-wrapping">Keyword:</span>
+    </div>
+    <input aria-describedby="addon-wrapping" placeholder="Enter keyword" aria-label="keyword" class="form-control"
+      id="keyword" type="text" />
+    <div class="input-group-append">
+      <span class="input-group-text input-button feature-color" id="keywordSearch">Search</span>
+    </div>
+  </div>
+
+  <p>Search by category: </p>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="categorySelect">Category</label>
+    </div>
+    <select class="custom-select" id="categorySelect">
+      <option selected value="default">Select category</option>
+    </select>
+    <div class="input-group-append">
+      <span class="input-group-text input-button feature-color" id="categorySearch">Search</span>
+    </div>
+  </div>
+
+  <p>Search by author: </p>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="authorSelect">Author</label>
+    </div>
+    <select class="custom-select" id="authorSelect">
+      <option selected value="default">Select author</option>
+    </select>
+    <div class="input-group-append">
+      <span class="input-group-text input-button feature-color" id="authorSearch">Search</span>
+    </div>
+  </div>
+
+  <p>Search by gender: </p>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="genderSelect">Gender</label>
+    </div>
+    <select class="custom-select" id="genderSelect">
+      <option selected value="default">Select gender</option>
+    </select>
+    <div class="input-group-append">
+      <span class="input-group-text input-button feature-color" id="genderSearch">Search</span>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h3 class="text-center">Quotes: </h3>
+<div id="quotesDiv">
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Author bio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card mb-3 mx-auto" style="max-width: 720px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img id="card-img" class="card-img">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 id="card-title" class="card-title"></h5>
+                <ul class="card-list"></ul>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
