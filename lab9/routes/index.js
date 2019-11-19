@@ -73,7 +73,8 @@ router.post("/keywordSearch", function(req, res) {
         res.json(result);
       } else {
         res.json({
-          statusMessage: "No matches for given search"
+          message: "No matches for given search",
+          error: 1
         });
       }
     }

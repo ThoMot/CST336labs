@@ -125,9 +125,14 @@ function searchKeyword(keyword) {
       keyword: keyword
     }),
     success: function(result) {
-      result.forEach(qt => {
-        displayQuote(qt.author, qt.quote);
-      });
+      $("#quotesDiv").empty();
+      if (result.error === 1) {
+        displayError(result.message);
+      } else {
+        result.forEach(qt => {
+          displayQuote(qt.author, qt.quote);
+        });
+      }
     },
     error: function(xhr, status) {
       console.log(xhr);
@@ -166,5 +171,15 @@ function displayQuote(author, quote) {
                 ${quote}
             </div>
         </div>`;
+  $("#quotesDiv").append(quoteResult);
+}
+
+function displayError(message) {
+  $("#quotesDiv").empty();
+  const quoteResult = `<div class="card my-2">
+      <div class="card-body">
+        ${message}
+      </div>
+    </div>`;
   $("#quotesDiv").append(quoteResult);
 }
