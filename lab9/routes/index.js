@@ -4,7 +4,7 @@ const createConnection = require("../db/database");
 
 router.get("/", function(req, res) {
   res.render("index", {
-    title: "Lab 9"
+    title: "Lab 9 - Quotes Lookup"
   });
 });
 

@@ -8,6 +8,7 @@ body {
   flex-direction: column;
 }
 
+
 .content {
   flex-grow: 1;
 }
@@ -18,4 +19,12 @@ body {
 
 .input-button:active{
   background-color: #B2B4B5;
+}
+
+.navbar{
+  background-color: #e9ecef;
+}
+
+.card-body{
+  background-color: #e9ecef;
 }
