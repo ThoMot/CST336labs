@@ -3,16 +3,16 @@ $(document).ready(() => {
   listGenders();
   listCategories();
 
-  $("#genderSearch").on("click", function () {
+  $("#genderSearch").on("click", function() {
     const genderValue = $("#genderSelect").val();
-    if(genderValue !== "default") {
+    if (genderValue !== "default") {
       searchGender(genderValue);
     }
   });
 
-  $("#keywordSearch").on("click", function () {
+  $("#keywordSearch").on("click", function() {
     const keywordValue = $("#keyword").val();
-    if(keywordValue === ""){
+    if (keywordValue === "") {
       $("#keyword").attr("placeholder", "Please input a search word");
     } else {
       searchKeyword(keywordValue);
@@ -47,25 +47,24 @@ function listGenders() {
     method: "get",
     contentType: "application/json",
     dataType: "json",
-    success: function (result) {
+    success: function(result) {
       console.log(result);
       result.forEach(gender => {
         if (gender.sex === "F") {
           $("#genderSelect").append(
-              `<option value=${gender.sex}>Female</option>`
+            `<option value=${gender.sex}>Female</option>`
           );
         } else if (gender.sex === "M") {
           $("#genderSelect").append(
-              `<option value=${gender.sex}>Male</option>`
+            `<option value=${gender.sex}>Male</option>`
           );
         }
       });
     },
-    error: function (xhr, status) {
+    error: function(xhr, status) {
       console.log("error calling to POST router", status);
     },
-    complete: function () {
-    }
+    complete: function() {}
   });
 }
 
@@ -77,11 +76,11 @@ function listCategories() {
     dataType: "json",
     success: function(result) {
       console.log(result);
-       result.forEach(category => {
+      result.forEach(category => {
         $("#categorySelect").append(
-           `<option value=${category.category}>${category.category}</option>`
-         );
-       });
+          `<option value=${category.category}>${category.category}</option>`
+        );
+      });
     },
     error: function(xhr, status) {
       console.log("error calling to POST router", status);
@@ -97,16 +96,15 @@ function searchGender(genderValue) {
     contentType: "application/json",
     dataType: "json",
     data: genderValue,
-    success: function (result) {
+    success: function(result) {
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
     },
-    error: function (xhr, status) {
+    error: function(xhr, status) {
       console.log("error calling to POST router", status);
     },
-    complete: function () {
-    }
+    complete: function() {}
   });
 }
 
@@ -116,24 +114,24 @@ function searchKeyword(keyword) {
     method: "post",
     contentType: "application/json",
     dataType: "json",
-    data: keyword,
-    success: function (result) {
+    data: JSON.stringify({
+      keyword: keyword
+    }),
+    success: function(result) {
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
     },
-    error: function (xhr, status) {
-      console.log("error calling to POST router", status);
+    error: function(xhr, status) {
+      console.log(xhr);
+      console.log(status);
     },
-    complete: function () {
-    }
+    complete: function() {}
   });
 }
 
-
 function displayQuote(author, quote) {
-  const quoteResult =
-        `<div class="card my-2">
+  const quoteResult = `<div class="card my-2">
             <div class="card-body">
                 <div class="card-title">
                     Author: ${author}
@@ -144,4 +142,3 @@ function displayQuote(author, quote) {
         </div>`;
   $("#quotesDiv").append(quoteResult);
 }
-

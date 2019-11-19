@@ -50,9 +50,9 @@ router.get("/categories", function(req, res) {
   connection.end();
 });
 
-router.post("/keywordSearch/:keyword", function(req, res) {
+router.post("/keywordSearch", function(req, res) {
   const connection = createConnection();
-  const searchParam = req.params.keyword;
+  const searchParam = req.body.keyword;
   const words = searchParam.split(" ");
   let searchQuery = "'%";
   words.forEach((word, i) => {
