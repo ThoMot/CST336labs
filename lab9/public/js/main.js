@@ -13,7 +13,7 @@ $(document).ready(() => {
   $("#keywordSearch").on("click", function () {
     const keywordValue = $("#keyword").val();
     if(keywordValue !== ""){
-      searchKeyword(keywordValue);
+      searchKeyword(keywordValue.trim());
     } else {
       $("#keyword").attr("placeholder", "Please input a search word");
     }
