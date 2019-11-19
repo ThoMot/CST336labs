@@ -28,6 +28,7 @@ router.get("/authors", function(req, res) {
     // console.log(results);
     res.json(results);
   });
+  connection.end();
 });
 
 router.get("/genders", function(req, res) {
@@ -46,6 +47,7 @@ router.get("/genders", function(req, res) {
     // console.log(results);
     res.json(results);
   });
+  connection.end();
 });
 
 router.get("/categories", function(req, res) {
@@ -64,6 +66,8 @@ router.get("/categories", function(req, res) {
     // console.log(results);
     res.json(results);
   });
+
+  connection.end();
 });
 
 module.exports = router;
