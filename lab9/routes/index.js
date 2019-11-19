@@ -15,7 +15,6 @@ router.get("/authors", function(req, res) {
     results,
     fields
   ) {
-    // console.log(results);
     res.json(results);
   });
   connection.end();
@@ -29,7 +28,6 @@ router.get("/genders", function(req, res) {
     results,
     fields
   ) {
-    // console.log(results);
     res.json(results);
   });
   connection.end();
@@ -43,7 +41,6 @@ router.get("/categories", function(req, res) {
     results,
     fields
   ) {
-    // console.log(results);
     res.json(results);
   });
 

@@ -12,7 +12,6 @@ $(document).ready(() => {
 
   // Adding eventlisteners for author in quotes
   $("#quotesDiv").on("click", "a", function() {
-    //console.log($(this)[0].text);
     const authorName = $(this)[0].text;
     getAuthorInfo(authorName);
   });
@@ -48,7 +47,6 @@ function listAuthors() {
     contentType: "application/json",
     dataType: "json",
     success: function(result) {
-      console.log(result);
       result.forEach(author => {
         $("#authorSelect").append(
           `<option value=${author.lastName}>${author.firstName} ${author.lastName}</option>`
@@ -69,7 +67,6 @@ function listGenders() {
     contentType: "application/json",
     dataType: "json",
     success: function(result) {
-      console.log(result);
       result.forEach(gender => {
         if (gender.sex === "F") {
           $("#genderSelect").append(
@@ -96,7 +93,6 @@ function listCategories() {
     contentType: "application/json",
     dataType: "json",
     success: function(result) {
-      console.log(result);
       result.forEach(category => {
         $("#categorySelect").append(
           `<option value=${category.category}>${category.category}</option>`
@@ -152,7 +148,6 @@ function searchKeyword(keyword) {
       }
     },
     error: function(xhr, status) {
-      console.log(xhr);
       console.log(status);
     },
     complete: function() {}
@@ -191,7 +186,6 @@ function getAuthorInfo(authorName) {
       authorName: authorName
     }),
     success: function(result) {
-      console.log(result);
       updateModal(result[0]);
     },
     error: function(xhr, status) {
@@ -246,7 +240,6 @@ function displayError(message) {
 }
 
 function updateModal(author) {
-  console.log(author);
   $(".card-list").empty();
   const {
     name,
