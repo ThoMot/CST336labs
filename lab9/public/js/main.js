@@ -25,6 +25,7 @@ $(document).ready(() => {
       searchAuthor(authorValue);
     }
   });
+
 });
 
 function listAuthors() {
@@ -104,6 +105,7 @@ function searchGender(genderValue) {
     dataType: "json",
     data: genderValue,
     success: function(result) {
+      $("#quotesDiv").empty();
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
@@ -150,6 +152,7 @@ function searchAuthor(authorValue) {
     dataType: "json",
     data: authorValue,
     success: function(result) {
+      $("#quotesDiv").empty();
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
@@ -165,7 +168,7 @@ function displayQuote(author, quote) {
   const quoteResult = `<div class="card my-2">
             <div class="card-body">
                 <div class="card-title">
-                    Author: ${author}
+                    Author: <a href="#" data-toggle="modal" data-target="#exampleModal">${author}</a>
                 </div>
             <hr align="left" width="40%">
                 ${quote}
@@ -175,7 +178,6 @@ function displayQuote(author, quote) {
 }
 
 function displayError(message) {
-  $("#quotesDiv").empty();
   const quoteResult = `<div class="card my-2">
       <div class="card-body">
         ${message}
