@@ -8,7 +8,16 @@ $(document).ready(() => {
     if(genderValue !== "default") {
       searchGender(genderValue);
     }
-  })
+  });
+
+  $("#keywordSearch").on("click", function () {
+    const keywordValue = $("#keyword").val();
+    if(keywordValue === ""){
+      $("#keyword").attr("placeholder", "Please input a search word");
+    } else {
+      searchKeyword(keywordValue);
+    }
+  });
 });
 
 function listAuthors() {
@@ -89,7 +98,6 @@ function searchGender(genderValue) {
     dataType: "json",
     data: genderValue,
     success: function (result) {
-      console.log(result);
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
@@ -101,6 +109,27 @@ function searchGender(genderValue) {
     }
   });
 }
+
+function searchKeyword(keyword) {
+  $.ajax({
+    url: "/keywordSearch",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: keyword,
+    success: function (result) {
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
+  });
+}
+
 
 function displayQuote(author, quote) {
   const quoteResult =
