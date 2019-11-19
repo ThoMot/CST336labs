@@ -254,6 +254,8 @@ function updateModal(author) {
 
   const birth = new Date(dob);
   const death = new Date(dod);
+  birth.setMonth(birth.getMonth() + 1);
+  death.setMonth(death.getMonth() + 1);
 
   $("#card-title").text(`${name}`);
   $(".card-list").append(
