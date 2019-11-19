@@ -1,0 +1,27 @@
+{
+  "name": "lab10",
+  "version": "1.0.0",
+  "description": "lab10 for class cst336 2019",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThoMot/CST336labs/tree/master/lab10"
+  },
+  "keywords": [
+    "lab",
+    "lab10",
+    "cst336"
+  ],
+  "author": "ThoMot, Certinax",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "hbs": "^4.0.6",
+    "nodemon": "^1.19.4"
+  }
+}
