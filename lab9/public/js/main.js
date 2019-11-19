@@ -12,16 +12,23 @@ $(document).ready(() => {
 
   $("#keywordSearch").on("click", function () {
     const keywordValue = $("#keyword").val();
-    if(keywordValue === ""){
-      $("#keyword").attr("placeholder", "Please input a search word");
-    } else {
+    if(keywordValue !== ""){
       searchKeyword(keywordValue);
+    } else {
+      $("#keyword").attr("placeholder", "Please input a search word");
+    }
+  });
+
+  $("#authorSearch").on("click", function () {
+    const authorValue = $("#authorSelect").val();
+    if(authorValue !== "default") {
+      searchAuthor(authorValue);
     }
   });
 });
 
 function listAuthors() {
-  $.ajax({
+$.ajax({
     url: "/authors",
     method: "get",
     contentType: "application/json",
@@ -30,7 +37,7 @@ function listAuthors() {
       console.log(result);
       result.forEach(author => {
         $("#authorSelect").append(
-          `<option value=${author.firstName} ${author.lastName}>${author.firstName} ${author.lastName}</option>`
+            `<option value=${author.lastName}>${author.firstName} ${author.lastName}</option>`
         );
       });
     },
@@ -117,6 +124,26 @@ function searchKeyword(keyword) {
     contentType: "application/json",
     dataType: "json",
     data: keyword,
+    success: function (result) {
+      result.forEach(qt => {
+        displayQuote(qt.author, qt.quote);
+      });
+    },
+    error: function (xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function () {
+    }
+  });
+}
+
+function searchAuthor(authorValue) {
+  $.ajax({
+    url: "/authorSearch",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: authorValue,
     success: function (result) {
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
