@@ -12,9 +12,9 @@ $(document).ready(() => {
 
   // Adding eventlisteners for author in quotes
   $("#quotesDiv").on("click", "a", function() {
-    console.log($(this)[0].text);
+    //console.log($(this)[0].text);
     const authorName = $(this)[0].text;
-    //getAuthorInfo(authorName);
+    getAuthorInfo(authorName);
   });
 
   $("#keywordSearch").on("click", function() {
@@ -39,7 +39,6 @@ $(document).ready(() => {
       searchCategory(categoryValue);
     }
   });
-
 });
 
 function listAuthors() {
@@ -182,24 +181,23 @@ function searchAuthor(authorValue) {
   });
 }
 
-
 function getAuthorInfo(authorName) {
   $.ajax({
     url: "/allAuthorInfo",
-     method: "post",
+    method: "post",
     contentType: "application/json",
     dataType: "json",
     data: JSON.stringify({
-       authorName: authorName
+      authorName: authorName
     }),
     success: function(result) {
-      updateModal(result);
+      console.log(result);
+      updateModal(result[0]);
     },
     error: function(xhr, status) {
       console.log("error calling to POST router", status);
     },
-    complete: function () {
-    }
+    complete: function() {}
   });
 }
 
@@ -212,17 +210,16 @@ function searchCategory(categoryValue) {
     data: JSON.stringify({
       category: categoryValue
     }),
-    success: function (result) {
+    success: function(result) {
       $("#quotesDiv").empty();
       result.forEach(qt => {
         displayQuote(qt.author, qt.quote);
       });
     },
-    error: function (xhr, status) {
+    error: function(xhr, status) {
       console.log("error calling to POST router", status);
     },
-    complete: function () {
-    }
+    complete: function() {}
   });
 }
 
@@ -249,6 +246,7 @@ function displayError(message) {
 }
 
 function updateModal(author) {
+  console.log(author);
   $(".card-list").empty();
   const {
     name,
@@ -261,13 +259,28 @@ function updateModal(author) {
     biography
   } = author;
 
-  $(".card-title").text(`${name}`);
-  $(".card-list").append(`<li>Date of birth: ${dob}`);
-  $(".card-list").append(`<li>Date of death: ${dod}`);
+  const birth = new Date(dob);
+  const death = new Date(dod);
+
+  $("#card-title").text(`${name}`);
+  $(".card-list").append(
+    `<li>Date of birth: ${birth.getDate() +
+      "-" +
+      birth.getMonth() +
+      "-" +
+      birth.getFullYear()}`
+  );
+  $(".card-list").append(
+    `<li>Date of death: ${death.getDate() +
+      "-" +
+      death.getMonth() +
+      "-" +
+      death.getFullYear()}`
+  );
   $(".card-list").append(`<li>Gender: ${sex === "M" ? "Male" : "Female"}`);
   $(".card-list").append(`<li>Profession: ${profession}`);
   $(".card-list").append(`<li>Country: ${country}`);
-  $("#card-img").setAttr("src", `${portrait}`);
-  $("#card-img").setAttr("alt", `portrait of ${name}`);
+  $("#card-img").attr("src", `${portrait}`);
+  $("#card-img").attr("alt", `portrait of ${name}`);
   $(".card-text").text(`${biography}`);
 }
