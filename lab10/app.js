@@ -16,9 +16,11 @@ hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 // Routes
 const indexRouter = require("./routes");
+const adminRouter = require("./routes/admin");
 
 // Route listeners
 app.use("/", indexRouter);
+app.use("/admin", adminRouter);
 
 // Server startup
 function normalizePort(val) {

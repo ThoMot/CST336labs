@@ -8,12 +8,6 @@ router.get("/", function(req, res) {
   });
 });
 
-router.get("/admin", function (req, res) {
-  res.render("admin", {
-    title: "Lab 10 - Admin page"
-  });
-});
-
 router.get("/authors", function(req, res) {
   const connection = createConnection();
   connection.execute("SELECT firstName, lastName FROM l9_author", function(
