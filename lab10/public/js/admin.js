@@ -2,15 +2,11 @@
 $(document).ready(() => {
     retreiveAuthors();
 
-    $('#button1').on('click', function() {
-        $('#openModal').show();
-    });
-
     // Adding eventlisteners for author in quotes
-    $("#tableBod").on("click", "button", function() {
-        const author = $(this)[0].name;
+    $("#tableBod").on("click", "a", function() {
+        const author = $(this)[0].id;
         if($(this)[0].innerHTML === "Update"){
-            //console.log($(this)[0].name)
+            getAuthorInfo(author);
         } else {
 
         }
@@ -39,6 +35,25 @@ function retreiveAuthors() {
     });
 }
 
+function getAuthorInfo(authorName) {
+    $.ajax({
+        url: "/allAuthorInfo",
+        method: "post",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            authorName: authorName
+        }),
+        success: function(result) {
+            populateUpdateModal(result);
+        },
+        error: function(xhr, status) {
+            console.log("error calling to POST router", status);
+        },
+        complete: function() {}
+    });
+}
+
 
 function displayAuthors(id, first, last, dob, dod) {
     const authResult = `
@@ -48,9 +63,23 @@ function displayAuthors(id, first, last, dob, dod) {
         <td>${last}</td>
         <td>${dob}</td>
         <td>${dod}</td>
-        <td><button class="btn btn-secondary" name="${id}">Update</button></td>
-        <td><button class="btn btn-secondary" name="${id}">Delete</button></td>
+        <td><a href="" class="btn btn-primary" data-toggle="modal" id="${id}" data-target="#modalUpdate">Update</a></td>
+        <td><button class="btn btn-danger" name="${id}">Delete</button></td>
     </tr>
     `;
     $("#tableBod").append(authResult);
+}
+
+function populateUpdateModal(id, firstName, lastName, dob, dod, bio, pic, country, profession) {
+    $("#authID").text(`${id}`);
+    $("#inputFirstName").attr("placeholder", `${firstName}`);
+    $("#inputLastName").attr("placeholder", `${lastName}`);
+    $("#inputDOB").attr("placeholder", `${dob}`);
+    $("#inputDOD").attr("placeholder", `${dod}`);
+    $("#inputBio").attr("placeholder", `${bio}`);
+    $("#authorPic").attr("src", pic);
+    $("#inputCountry").attr("placeholder", `${country}`);
+    $("#inputProfession").attr("placeholder", `${profession}`);
+    $("#inputPicture").attr("placeholder", `${pic}`);
+
 }
