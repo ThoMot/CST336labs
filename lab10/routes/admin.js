@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const createConnection = require("../db/database");
 const dateConverter = require("../tools/datehandler");
+const mysql = require("mysql2");
 
 router.get("/", function(req, res) {
   res.render("admin", {
@@ -35,6 +36,56 @@ router.get("/authors", function(req, res, next) {
       }
     }
   );
+  connection.end();
+});
+
+router.put("/author/update", function(req, res) {
+  const {
+    authorId,
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  } = req.body;
+
+  let sql =
+    "UPDATE l9_author SET firstName=?, lastName=?, dob=?, dod=?, sex=?, profession=?, country=?, portrait=?, biography=? WHERE authorId=?";
+  const inputs = [
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography,
+    authorId
+  ];
+
+  // Preparing sql and handles sqli
+  sql = mysql.format(sql, inputs);
+
+  const connection = createConnection();
+  connection.query(sql, function(error, results, fields) {
+    if (error) throw error;
+    if (results.affectedRows === 1) {
+      res.json({
+        status: "success",
+        message: "Update successful"
+      });
+    } else {
+      res.json({
+        status: "failed",
+        message: "Update unsuccessful"
+      });
+    }
+  });
   connection.end();
 });
 
