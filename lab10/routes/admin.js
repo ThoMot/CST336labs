@@ -101,7 +101,7 @@ router.get("/author/:id", function(req, res) {
       res.json(err);
     }
     if (result) {
-      if (result.length > 0) {
+      if (result.length === 1) {
         result.map(author => {
           // Formatting sql date object into YYYY-MM-DD format
           author.dob = dateConverter(author.dob);
