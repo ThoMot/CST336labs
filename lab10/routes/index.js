@@ -129,6 +129,7 @@ router.post("/allAuthorInfo", function(req, res) {
   const connection = createConnection();
   const searchParam = req.body.authorName;
   const lastname = searchParam.split(" ")[1];
+  console.log(searchParam);
   const query = `SELECT a.dob, a.dod, a.sex, a.profession, a.country, a.portrait, a.biography, CONCAT(a.firstName,' ',a.lastName) as 'name' FROM l9_author a WHERE a.lastname LIKE ('${lastname}')`;
   connection.execute(query, function(err, result, fields) {
     if (err) {

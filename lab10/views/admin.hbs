@@ -8,7 +8,9 @@
         <th style="width: 16.66%">Last</th>
         <th style="width: 16.66%">DOB</th>
         <th style="width: 16.66%">DOD</th>
-        <th style="width: 16.66%" scope="col" colspan="2"><button  class="btn btn-secondary" id="newAuthorButton">New Author</button></th>
+        <th style="width: 16.66%" scope="col" colspan="2">
+            <a href="" class="btn btn-success" data-toggle="modal" id="newAuthorButton" data-target="#modalNew">New Author</a>
+        </th>
     </tr>
     </thead>
     <tbody id="tableBod">
@@ -18,44 +20,161 @@
 
 
 <!--Update Modal-->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
         <!--Content-->
-        <div class="modal-content">
-
-            <!--Header-->
+        <div class="modal-content" id="modalBod">
             <div class="modal-header">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive">
+                <img id="authorPic" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive mx-auto d-block">
             </div>
             <!--Body-->
-            <div class="modal-body text-center mb-1">
-
-                <h5 class="mt-1 mb-2">Maria Doe</h5>
-
-                <div class="md-form ml-0 mr-0">
-                    <input type="password" type="text" id="form29" class="form-control form-control-sm validate ml-0">
-                    <label data-error="wrong" data-success="right" for="form29" class="ml-0">Enter password</label>
-                </div>
+            <div class="modal-body mb-1">
+                <h1 class="mt-1 mb-2 text-center">Update Author</h1>
+                <h5 id="authID" class="mt-1 mb-2 text-center"> Author ID: </h5>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstName">First Name</label>
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputLastName">Last Name</label>
+                            <input type="text" class="form-control" id="inputLastName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDOB">DOB</label>
+                            <input type="date" class="form-control" id="inputDOB" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputDOD">DOD</label>
+                            <input type="date" class="form-control" id="inputDOD" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputProfession">Profession</label>
+                            <input type="text" class="form-control" id="inputProfession" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCountry">Country</label>
+                            <input type="text" class="form-control" id="inputCountry" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputGender">Gender</label>
+                            <select class="btn btn-secondary" id="inputGender">
+                                <option selected value="default">Select gender</option>
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                                <option value="O">Other</option>
+                                <option value="B">Binary</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="inputPicture">Picture</label>
+                            <input type="text" class="form-control" id="inputPicture" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputBio">Bio</label>
+                            <textarea rows="4" class="form-control" id="inputBio" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </form>
 
                 <div class="text-center mt-4">
-                    <button class="btn btn-cyan mt-1">Login <i class="fas fa-sign-in ml-1"></i></button>
+                    <button class="btn btn-success mt-1">Save<i class="fas fa-sign-in ml-1"></i></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
-
         </div>
         <!--/.Content-->
     </div>
 </div>
-<!--Modal: Login with Avatar Form-->
 
-<div class="text-center">
-    <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">Launch
-        Modal Login with Avatar</a>
+
+<!--New Author Modal-->
+<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
+        <!--Content-->
+        <div class="modal-content" id="modalBod">
+            <div class="modal-header">
+                <img id="authorPic" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive mx-auto d-block">
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-1">
+                <h1 class="mt-1 mb-2 text-center">New Author</h1>
+                <h5 id="authID" class="mt-1 mb-2 text-center"> Author ID: </h5>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstName">First Name</label>
+                            <input type="text" class="form-control" id="inputFirstName" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputLastName">Last Name</label>
+                            <input type="text" class="form-control" id="inputLastName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputDOB">DOB</label>
+                            <input type="date" class="form-control" id="inputDOB" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputDOD">DOD</label>
+                            <input type="date" class="form-control" id="inputDOD" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputProfession">Profession</label>
+                            <input type="text" class="form-control" id="inputProfession" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputCountry">Country</label>
+                            <input type="text" class="form-control" id="inputCountry" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputGender">Gender</label>
+                            <select class="btn btn-secondary" id="inputGender">
+                                <option selected value="default">Select gender</option>
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                                <option value="O">Other</option>
+                                <option value="B">Binary</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-9">
+                            <label for="inputPicture">Picture</label>
+                            <input type="text" class="form-control" id="inputPicture" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputBio">Bio</label>
+                            <textarea rows="4" class="form-control" id="inputBio" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
 </div>
-
-
-
 
 
 <script src="js/admin.js"></script>
