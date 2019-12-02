@@ -3,10 +3,11 @@ const router = express.Router();
 const createConnection = require("../db/database");
 const dateConverter = require("../tools/datehandler");
 
-router.get("/", function(req, res, next) {
-  res.render("admin", {
-    title: "Lab 10 - Admin page"
-  });
+router.get("/", function (req, res) {
+    res.render("admin", {
+        title: "Lab 10 - Admin page",
+        link: "window.location.href='/'",
+        btnName: "Lookup"
 });
 
 router.get("/authors", function(req, res, next) {
