@@ -89,4 +89,37 @@ router.put("/author/update", function(req, res) {
   connection.end();
 });
 
+router.get("/author/:id", function(req, res) {
+  const connection = createConnection();
+  const sql =
+    "SELECT a.authorId, a.firstName, a.lastName, a.dob, a.dod, g.name AS gender, a.profession, a.country, a.portrait, a.biography FROM l9_author a INNER JOIN l9_gender g ON a.sex = g.gender WHERE a.authorId = ?";
+
+  const id = [req.params.id];
+
+  connection.query(sql, id, function(err, result, fields) {
+    if (err) {
+      res.json(err);
+    }
+    if (result) {
+      if (result.length > 0) {
+        result.map(author => {
+          // Formatting sql date object into YYYY-MM-DD format
+          author.dob = dateConverter(author.dob);
+          author.dod = dateConverter(author.dod);
+        });
+        res.json({
+          status: "success",
+          author: result[0]
+        });
+      } else {
+        res.json({
+          status: "unsuccessful",
+          message: "No matches for given search"
+        });
+      }
+    }
+  });
+  connection.end();
+});
+
 module.exports = router;
