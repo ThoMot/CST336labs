@@ -53,7 +53,7 @@ router.put("/author/update", function(req, res) {
     portrait,
     biography
   } = req.body;
-console.log(firstName);
+  console.log(firstName);
   let sql =
     "UPDATE l9_author SET firstName=?, lastName=?, dob=?, dod=?, sex=?, profession=?, country=?, portrait=?, biography=? WHERE authorId=?";
   const inputs = [
@@ -92,7 +92,6 @@ console.log(firstName);
   });
   connection.end();
 });
-
 
 router.post("/author/add", function(req, res) {
   const {
@@ -142,7 +141,7 @@ router.post("/author/add", function(req, res) {
       });
     }
   });
-
+});
 
 router.get("/author/:id", function(req, res) {
   const connection = createConnection();
@@ -174,7 +173,7 @@ router.get("/author/:id", function(req, res) {
       }
     }
   });
- 
+
   connection.end();
 });
 
