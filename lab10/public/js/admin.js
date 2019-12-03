@@ -1,5 +1,6 @@
 $(document).ready(() => {
   $("#createFailed").hide();
+  $("#deleteFailed").hide();
   retreiveAuthors();
 
   //when save is clicked in New author modal
@@ -42,7 +43,6 @@ $(document).ready(() => {
     const author = $(this)[0].id;
     if ($(this)[0].innerHTML === "Update") {
       getAuthorInfo(author);
-    } else {
     }
   });
 });
@@ -87,6 +87,27 @@ function getAuthorInfo(authorId) {
       populateUpdateModal(result.author);
     },
     error: function(xhr, status) {
+      console.log("error calling to POST router", status);
+    },
+    complete: function() {}
+  });
+}
+
+//Gets author info for populating the update modal
+function deleteAuthor(authorId) {
+  $.ajax({
+    url: `/admin/author/`,
+    method: "delete",
+    contentType: "application/json",
+    dataType: "json",
+    data: {
+      authorId: authorId
+    },
+    success: function(result) {
+      $("#deleteSuccess").html(result.message);
+    },
+    error: function(xhr, status) {
+      $("#deleteFailed").show();
       console.log("error calling to POST router", status);
     },
     complete: function() {}
