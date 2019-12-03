@@ -27,7 +27,6 @@ router.get("/authors", function(req, res, next) {
       } else {
         results.map(author => {
           // Formatting sql date object into YYYY-MM-DD format
-          console.log(author.dod);
           author.dob = dateConverter(author.dob);
           author.dod = dateConverter(author.dod);
         });
