@@ -2,6 +2,23 @@
 $(document).ready(() => {
     retreiveAuthors();
 
+    $("#saveUpdates").on("click", function () {
+        const updatedAuthor = {
+            authorId: $("#authID").html(),
+            firstName: $("#inputFirstName").val(),
+            lastName: $("#inputLastName").val(),
+            dob: $("#inputDOB").val(),
+            dod: $("#inputDOD").val(),
+            country: $("#inputCountry").val(),
+            profession: $("#inputProfession").val(),
+            portrait: $("#inputPicture").val(),
+            sex: $("#inputGender").val(),
+            biography: $("#inputBio").val()
+        };
+
+        updateAuthor(updatedAuthor);
+    });
+
     // Adding eventlisteners for author in quotes
     $("#tableBod").on("click", "a", function() {
         const author = $(this)[0].id;
@@ -14,7 +31,7 @@ $(document).ready(() => {
 
 });
 
-
+//gets all author info that is set on page load
 function retreiveAuthors() {
     $.ajax({
         url: "/admin/authors",
@@ -35,6 +52,7 @@ function retreiveAuthors() {
     });
 }
 
+//Gets author info for populating the update modal
 function getAuthorInfo(authorName) {
     $.ajax({
         url: "/allAuthorInfo",
@@ -54,7 +72,31 @@ function getAuthorInfo(authorName) {
     });
 }
 
+function updateAuthor(author){
+    $.ajax({
+        url: "/admin/author/update",
+        method: "put",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(author),
+        success: function(result) {
+            if(result.status === "success") {
+                $("#updateSuccess").html(result.message);
+            } else {
+                $("#failed").show();
+            }
+        },
+        error: function(xhr, status) {
+            $("#failed").show();
+            console.log("error calling to POST router", status);
+        },
+        complete: function() {}
+    });
+}
 
+
+
+//populates the table of authors on page load
 function displayAuthors(id, first, last, dob, dod) {
     const authResult = `
         <tr>
@@ -70,16 +112,33 @@ function displayAuthors(id, first, last, dob, dod) {
     $("#tableBod").append(authResult);
 }
 
-function populateUpdateModal(id, firstName, lastName, dob, dod, bio, pic, country, profession) {
-    $("#authID").text(`${id}`);
-    $("#inputFirstName").attr("placeholder", `${firstName}`);
-    $("#inputLastName").attr("placeholder", `${lastName}`);
-    $("#inputDOB").attr("placeholder", `${dob}`);
-    $("#inputDOD").attr("placeholder", `${dod}`);
-    $("#inputBio").attr("placeholder", `${bio}`);
-    $("#authorPic").attr("src", pic);
-    $("#inputCountry").attr("placeholder", `${country}`);
-    $("#inputProfession").attr("placeholder", `${profession}`);
-    $("#inputPicture").attr("placeholder", `${pic}`);
+//populates the update modal with info from the database
+function populateUpdateModal(author) {
+    $("#failed").hide();
+    const {
+        authorId,
+        firstName,
+        lastName,
+        dob,
+        dod,
+        gender,
+        country,
+        profession,
+        portrait,
+        biography
+    } = author;
+
+
+    $("#authID").text(5);
+    $("#inputFirstName").html(firstName);
+    $("#inputLastName").html(lastName);
+    $("#inputDOB").html(dob);
+    $("#inputDOD").html(dod);
+    $("#inputBio").html(biography);
+    $("#inputGender").html(gender);
+    $("#authorPic").attr("src", portrait);
+    $("#inputCountry").html(country);
+    $("#inputProfession").html(profession);
+    $("#inputPicture").html(portrait);
 
 }
