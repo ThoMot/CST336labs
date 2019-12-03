@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const createConnection = require("../db/database");
 const dateConverter = require("../tools/datehandler");
+const inputValidation = require("../tools/utilities");
 const mysql = require("mysql2");
 
 router.get("/", function(req, res) {
@@ -26,6 +27,7 @@ router.get("/authors", function(req, res, next) {
       } else {
         results.map(author => {
           // Formatting sql date object into YYYY-MM-DD format
+          console.log(author.dod);
           author.dob = dateConverter(author.dob);
           author.dod = dateConverter(author.dod);
         });
@@ -67,6 +69,8 @@ router.put("/author/update", function(req, res) {
     biography,
     authorId
   ];
+
+  inputValidation(inputs);
 
   // Preparing sql and handles sqli
   sql = mysql.format(sql, inputs);
@@ -113,6 +117,8 @@ router.post("/author/add", function(req, res) {
     portrait,
     biography
   ];
+
+  inputValidation(inputs);
 
   let sql =
     "INSERT INTO l9_author (firstName, lastName, dob, dod, sex, profession, country, portrait, biography) VALUES (?)";

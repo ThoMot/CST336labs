@@ -116,8 +116,8 @@ router.post("/authorSearch", function(req, res) {
         res.json(result);
       } else {
         res.json({
-          message: "No matches for given search",
-          error: 1
+          message: `${req.body.author} has no quotes`,
+          error: true
         });
       }
     }
