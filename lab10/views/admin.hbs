@@ -1,25 +1,25 @@
 <h3 class="text-center">Authors: </h3>
+<div class="table-res">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th style="width: 16.66%">ID</th>
+                <th style="width: 16.66%">First</th>
+                <th style="width: 16.66%">Last</th>
+                <th style="width: 16.66%">DOB</th>
+                <th style="width: 16.66%">DOD</th>
+                <th style="width: 16.66%" scope="col" colspan="2">
+                    <a href="" class="btn btn-success" data-toggle="modal" id="newAuthorButton"
+                        data-target="#modalNew">New
+                        Author</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tableBod">
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th style="width: 16.66%">ID</th>
-            <th style="width: 16.66%">First</th>
-            <th style="width: 16.66%">Last</th>
-            <th style="width: 16.66%">DOB</th>
-            <th style="width: 16.66%">DOD</th>
-            <th style="width: 16.66%" scope="col" colspan="2">
-                <a href="" class="btn btn-success" data-toggle="modal" id="newAuthorButton" data-target="#modalNew">New
-                    Author</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody id="tableBod">
-
-    </tbody>
-</table>
-
-
+        </tbody>
+    </table>
+</div>
 <!--Update Modal-->
 <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
@@ -27,8 +27,8 @@
         <div class="modal-content" id="modalBod">
             <div class="modal-header">
                 <img id="authorPic"
-                     src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-                     alt="avatar" class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
+                    src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                    alt="avatar" class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
             </div>
             <!--Body-->
             <div class="modal-body mb-1">
@@ -48,21 +48,25 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputDOB">DOB</label>
-                            <input type="date" class="form-control" id="inputDOB" placeholder="please input date of birth">
+                            <input type="date" class="form-control" id="inputDOB"
+                                placeholder="please input date of birth">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDOD">DOD</label>
-                            <input type="date" class="form-control" id="inputDOD" placeholder="please input date of death">
+                            <input type="date" class="form-control" id="inputDOD"
+                                placeholder="please input date of death">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputProfession">Profession</label>
-                            <input type="text" class="form-control" id="inputProfession" placeholder="please input profession">
+                            <input type="text" class="form-control" id="inputProfession"
+                                placeholder="please input profession">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputCountry">Country</label>
-                            <input type="text" class="form-control" id="inputCountry" placeholder="please input country">
+                            <input type="text" class="form-control" id="inputCountry"
+                                placeholder="please input country">
                         </div>
                     </div>
                     <div class="form-row">
@@ -77,20 +81,22 @@
                         </div>
                         <div class="form-group col-md-9">
                             <label for="inputPicture">Picture</label>
-                            <input type="text" class="form-control" id="inputPicture" placeholder="please input an image link">
+                            <input type="text" class="form-control" id="inputPicture"
+                                placeholder="please input an image link">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="inputBio">Bio</label>
-                            <textarea rows="4" class="form-control" id="inputBio" placeholder="please input a biography"></textarea>
+                            <textarea rows="4" class="form-control" id="inputBio"
+                                placeholder="please input a biography"></textarea>
                         </div>
                     </div>
                 </form>
                 <div class="text-center">
                     <h5 id="updateSuccess" class="text-success"></h5>
                     <div id="failed">
-                    <h5 id="updateFailed" class="text-danger">Update Failed</h5>
+                        <h5 id="updateFailed" class="text-danger">Update Failed</h5>
                     </div>
                 </div>
                 <div class="text-center mt-4">
@@ -110,8 +116,9 @@
         <!--Content-->
         <div class="modal-content" id="modalBod">
             <div class="modal-header">
-                <img id="authorPic" src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="avatar"
-                    class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
+                <img id="authorPic"
+                    src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                    alt="avatar" class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
             </div>
             <!--Body-->
             <div class="modal-body mb-1">
@@ -174,7 +181,8 @@
                 <div class="text-center">
                     <h5 id="createSuccess" class="text-success"></h5>
                     <div id="createFailed">
-                        <h5 class="text-danger">Adding new author failed, please check that all fields are populated</h5>
+                        <h5 class="text-danger">Adding new author failed, please check that all fields are populated
+                        </h5>
                     </div>
                 </div>
                 <div class="text-center mt-4">
@@ -188,8 +196,7 @@
 </div>
 
 <!--Delete Modal-->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger text-center">

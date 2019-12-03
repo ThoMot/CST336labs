@@ -8,31 +8,34 @@ body {
   flex-direction: column;
 }
 
-
 .content {
   flex-grow: 1;
 }
 
-.input-button{
+.input-button {
   cursor: pointer;
 }
 
-.input-button:active{
-  background-color: #B2B4B5;
+.input-button:active {
+  background-color: #b2b4b5;
 }
 
-.navbar{
+.navbar {
   background-color: #e9ecef;
 }
 
-.card-body{
+.card-body {
   background-color: #e9ecef;
 }
 
-.cardhead{
-  background-color: #B2B4B5;
+.cardhead {
+  background-color: #b2b4b5;
 }
 
 .hidden {
   display: none;
+}
+
+.table-res {
+  overflow-x: auto !important;
 }
