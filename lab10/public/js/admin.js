@@ -157,6 +157,7 @@ function createAuthor(author) {
     success: function(result) {
       if (result.status === "success") {
         $("#createSuccess").html(result.message);
+        retreiveAuthors();
       } else {
         $("#createFailed").show();
       }
