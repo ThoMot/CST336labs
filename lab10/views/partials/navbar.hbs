@@ -1,4 +1,10 @@
 <nav class="navbar navbar-light shadow-sm">
   <span class="navbar-brand mb-0 h1">{{title}}</span>
+  <span>
+    {{#if username}}
+    Welcome: <span class="text-primary">{{username}}</span>
+    <button id="logout" onclick="logout()" class="btn btn-secondary">Logout</button>
+    {{/if}}
     <button onclick="{{link}}" class="btn btn-secondary" id="loginButton">{{btnName}}</button>
+  </span>
 </nav>

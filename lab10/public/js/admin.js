@@ -21,7 +21,7 @@ $(document).ready(() => {
   });
 
   //listener for confirming delete
-  $("#deleteAuthor").on("click", function () {
+  $("#deleteAuthor").on("click", function() {
     deleteAuthor($("#deletedAuthorId").html());
   });
 
@@ -212,4 +212,22 @@ function populateUpdateModal(author) {
   $("#inputCountry").val(country);
   $("#inputProfession").val(profession);
   $("#inputPicture").val(portrait);
+}
+
+function logout() {
+  $.ajax({
+    url: "/auth/logout",
+    method: "get",
+    contentType: "application/json",
+    dataType: "json",
+    success: function(result) {
+      if (result.successful) {
+        window.location.href = "/";
+      }
+    },
+    error: function(xhr, status) {
+      console.log("Error logging out: ", status);
+    },
+    complete: function() {}
+  });
 }

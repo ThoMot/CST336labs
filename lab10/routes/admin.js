@@ -6,15 +6,15 @@ const inputValidation = require("../tools/utilities");
 const mysql = require("mysql2");
 
 router.get("/", function(req, res) {
-  let loggedin = false;
-  if (!loggedin) {
-    res.redirect("/login");
-  } else {
+  if (req.session.username) {
     res.render("admin", {
       title: "Lab 10 - Admin page",
       link: "window.location.href='/'",
-      btnName: "Lookup"
+      btnName: "Lookup",
+      username: req.session.username
     });
+  } else {
+    res.redirect("/login");
   }
 });
 
@@ -182,7 +182,6 @@ router.get("/author/:id", function(req, res) {
 });
 
 router.delete("/author", function(req, res) {
-  console.log(req.body);
   const authorId = req.body.authorId;
 
   const sql =
