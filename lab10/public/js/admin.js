@@ -112,6 +112,7 @@ function deleteAuthor(authorId) {
     }),
     success: function(result) {
       $("#deleteSuccess").html(result.message);
+      retreiveAuthors();
     },
     error: function(xhr, status) {
       $("#deleteFailed").show();
