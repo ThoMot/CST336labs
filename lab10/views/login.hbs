@@ -21,9 +21,12 @@
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
         </div>
 
+        <div id="loginfdbk">
+          <p class="text-danger text-center" id="loginmsg">placeholder</p>
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-success">Login</button>
+        <button id="login" class="btn btn-success">Login</button>
         <button class="btn btn-danger" onclick={{link}}>Cancel</button>
       </div>
     </div>
@@ -34,9 +37,4 @@
   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
     Modal Login Form</a>
 </div> --}}
-
-<script>
-  $("#modalLoginForm").modal('show').on('hidden.bs.modal', function (e) {
-    window.location.href = "/";
-  });
-</script>
+<script src="js/login.js"></script>

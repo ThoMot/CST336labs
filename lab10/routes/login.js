@@ -9,4 +9,22 @@ router.get("/", function(req, res) {
   });
 });
 
+router.post("/", function(req, res) {
+  let successful = false;
+  let message = "";
+
+  if (req.body.username === "root" && req.body.password === "toor") {
+    successful = true;
+    req.session.username = req.body.username;
+  } else {
+    delete req.session.username;
+    message = "Wrong username or password";
+  }
+
+  res.json({
+    successful: successful,
+    message: message
+  });
+});
+
 module.exports = router;
