@@ -20,6 +20,11 @@ $(document).ready(() => {
     createAuthor(newAuthor);
   });
 
+  //listener for confirming delete
+  $("#deleteAuthor").on("click", function () {
+    deleteAuthor($("#deletedAuthorId").html());
+  });
+
   //when save is clicked in update modal
   $("#saveUpdates").on("click", function() {
     const updatedAuthor = {
@@ -43,6 +48,8 @@ $(document).ready(() => {
     const author = $(this)[0].id;
     if ($(this)[0].innerHTML === "Update") {
       getAuthorInfo(author);
+    } else {
+      $("#deletedAuthorId").text(author);
     }
   });
 });
@@ -96,13 +103,13 @@ function getAuthorInfo(authorId) {
 //Gets author info for populating the update modal
 function deleteAuthor(authorId) {
   $.ajax({
-    url: `/admin/author/`,
-    method: "delete",
+    url: "/admin/author",
+    method: "DELETE",
     contentType: "application/json",
     dataType: "json",
-    data: {
+    data: JSON.stringify({
       authorId: authorId
-    },
+    }),
     success: function(result) {
       $("#deleteSuccess").html(result.message);
     },
