@@ -104,6 +104,7 @@ function updateAuthor(author) {
     success: function(result) {
       if (result.status === "success") {
         $("#updateSuccess").html(result.message);
+        retreiveAuthors();
       } else {
         $("#failed").show();
       }
