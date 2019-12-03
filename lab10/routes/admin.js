@@ -89,4 +89,54 @@ router.put("/author/update", function(req, res) {
   connection.end();
 });
 
+router.post("/author/add", function(req, res) {
+  const {
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  } = req.body;
+
+  const inputs = [
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  ];
+
+  let sql =
+    "INSERT INTO l9_author (firstName, lastName, dob, dod, sex, profession, country, portrait, biography) VALUES (?)";
+
+  sql = mysql.format(sql, [inputs]);
+
+  const connection = createConnection();
+
+  connection.query(sql, function(error, result, fields) {
+    if (error) console.error(error);
+    if (result) {
+      res.json({
+        status: "success",
+        message: `New author added with id: ${result.insertId}`
+      });
+    } else {
+      res.json({
+        status: "unsuccessful",
+        message: "Author creation failed"
+      });
+    }
+  });
+
+  connection.end();
+});
+
 module.exports = router;
