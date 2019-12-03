@@ -178,4 +178,31 @@ router.get("/author/:id", function(req, res) {
   connection.end();
 });
 
+router.delete("/author", function(req, res) {
+  console.log(req.body);
+  const authorId = req.body.authorId;
+
+  const sql =
+    "DELETE a.*, q.*, f.* FROM l9_author a LEFT JOIN l9_quotes q ON a.authorId = q.authorId LEFT JOIN l9_favorite f ON q.quoteId = f.quoteId WHERE a.authorId = ?;";
+
+  const connection = createConnection();
+  connection.query(sql, authorId, function(error, result, fields) {
+    if (error) throw error;
+    if (result) {
+      if (result.affectedRows > 0) {
+        res.json({
+          status: "success",
+          message: "Author deleted"
+        });
+      } else if (result.affectedRows === 0) {
+        res.json({
+          status: "success",
+          message: "No rows were deleted"
+        });
+      }
+    }
+  });
+  connection.end();
+});
+
 module.exports = router;
