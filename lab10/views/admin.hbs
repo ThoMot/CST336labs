@@ -26,8 +26,9 @@
         <!--Content-->
         <div class="modal-content" id="modalBod">
             <div class="modal-header">
-                <img id="authorPic" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar"
-                    class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
+                <img id="authorPic"
+                     src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+                     alt="avatar" class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
             </div>
             <!--Body-->
             <div class="modal-body mb-1">
@@ -109,48 +110,48 @@
         <!--Content-->
         <div class="modal-content" id="modalBod">
             <div class="modal-header">
-                <img id="authorPic" src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar"
-                    class="rounded-circle img-responsive mx-auto d-block">
+                <img id="authorPic" src="https://images.unsplash.com/photo-1531885528960-f02e4dbf1562?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="avatar"
+                    class="rounded-circle img-responsive img-fluid w-25 mx-auto d-block">
             </div>
             <!--Body-->
             <div class="modal-body mb-1">
                 <h1 class="mt-1 mb-2 text-center">New Author</h1>
-                <h5 id="authID" class="mt-1 mb-2 text-center"> Author ID: </h5>
+                <h5 id="authID" class="mt-1 mb-2 text-center"></h5>
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputFirstName">First Name</label>
-                            <input type="text" class="form-control" id="inputFirstName" placeholder="">
+                            <label for="newFirstName">First Name</label>
+                            <input type="text" class="form-control" id="newFirstName" placeholder="">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputLastName">Last Name</label>
-                            <input type="text" class="form-control" id="inputLastName" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputDOB">DOB</label>
-                            <input type="date" class="form-control" id="inputDOB" placeholder="">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDOD">DOD</label>
-                            <input type="date" class="form-control" id="inputDOD" placeholder="">
+                            <label for="newLastName">Last Name</label>
+                            <input type="text" class="form-control" id="newLastName" placeholder="">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputProfession">Profession</label>
-                            <input type="text" class="form-control" id="inputProfession" placeholder="">
+                            <label for="newDOB">DOB</label>
+                            <input type="date" class="form-control" id="newDOB" placeholder="">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputCountry">Country</label>
-                            <input type="text" class="form-control" id="inputCountry" placeholder="">
+                            <label for="newDOD">DOD</label>
+                            <input type="date" class="form-control" id="newDOD" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="newProfession">Profession</label>
+                            <input type="text" class="form-control" id="newProfession" placeholder="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="newCountry">Country</label>
+                            <input type="text" class="form-control" id="newCountry" placeholder="">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="inputGender">Gender</label>
-                            <select class="btn btn-secondary" id="inputGender">
+                            <label for="newGender">Gender</label>
+                            <select class="btn btn-secondary" id="newGender">
                                 <option selected value="default">Select gender</option>
                                 <option value="F">Female</option>
                                 <option value="M">Male</option>
@@ -159,25 +160,51 @@
                             </select>
                         </div>
                         <div class="form-group col-md-9">
-                            <label for="inputPicture">Picture</label>
-                            <input type="text" class="form-control" id="inputPicture" placeholder="">
+                            <label for="newPicture">Picture</label>
+                            <input type="text" class="form-control" id="newPicture" placeholder="">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="inputBio">Bio</label>
-                            <textarea rows="4" class="form-control" id="inputBio" placeholder=""></textarea>
+                            <label for="newBio">Bio</label>
+                            <textarea rows="4" class="form-control" id="newBio" placeholder=""></textarea>
                         </div>
                     </div>
                 </form>
-
+                <div class="text-center">
+                    <h5 id="createSuccess" class="text-success"></h5>
+                    <div id="createFailed">
+                        <h5 class="text-danger">Adding new author failed, please check that all fields are populated</h5>
+                    </div>
+                </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-success" id="saveNewAuthor">Save</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
         <!--/.Content-->
+    </div>
+</div>
+
+<!--Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Are you sure you want to delete this author?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-success" id="deleteAuthor">Confirm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

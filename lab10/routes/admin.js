@@ -105,6 +105,7 @@ router.post("/author/add", function(req, res) {
     portrait,
     biography
   } = req.body;
+  console.log(req.body);
 
   const inputs = [
     firstName,

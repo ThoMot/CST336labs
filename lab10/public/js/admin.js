@@ -1,6 +1,25 @@
 $(document).ready(() => {
+  $("#createFailed").hide();
   retreiveAuthors();
 
+  //when save is clicked in New author modal
+  $("#saveNewAuthor").on("click", function() {
+    const newAuthor = {
+      firstName: $("#newFirstName").val(),
+      lastName: $("#newLastName").val(),
+      dob: $("#newDOB").val(),
+      dod: $("#newDOD").val(),
+      country: $("#newCountry").val(),
+      profession: $("#newProfession").val(),
+      portrait: $("#newPicture").val(),
+      sex: $("#newGender").val(),
+      biography: $("#newBio").val()
+    };
+
+    createAuthor(newAuthor);
+  });
+
+  //when save is clicked in update modal
   $("#saveUpdates").on("click", function() {
     const updatedAuthor = {
       authorId: $("#authID").html(),
@@ -74,6 +93,7 @@ function getAuthorInfo(authorId) {
   });
 }
 
+//sends call to update an author in the database
 function updateAuthor(author) {
   $.ajax({
     url: "/admin/author/update",
@@ -96,6 +116,29 @@ function updateAuthor(author) {
   });
 }
 
+//sends call to create new author in database
+function createAuthor(author) {
+  $.ajax({
+    url: "/admin/author/add",
+    method: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify(author),
+    success: function(result) {
+      if (result.status === "success") {
+        $("#createSuccess").html(result.message);
+      } else {
+        $("#createFailed").show();
+      }
+    },
+    error: function(xhr, status) {
+      $("#createFailed").show();
+      console.log("error calling to POST router", status);
+    },
+    complete: function() {}
+  });
+}
+
 //populates the table of authors on page load
 function displayAuthors(id, first, last, dob, dod) {
   const authResult = `
@@ -106,7 +149,8 @@ function displayAuthors(id, first, last, dob, dod) {
         <td>${dob}</td>
         <td>${dod}</td>
         <td><a href="" class="btn btn-primary" data-toggle="modal" id="${id}" data-target="#modalUpdate">Update</a></td>
-        <td><button class="btn btn-danger" name="${id}">Delete</button></td>
+        <td><a href="" class="btn btn-danger" data-toggle="modal" id="${id}" data-target="#deleteModal">Delete</a></td>
+
     </tr>
     `;
   $("#tableBod").append(authResult);
