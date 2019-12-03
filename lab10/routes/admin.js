@@ -6,11 +6,16 @@ const inputValidation = require("../tools/utilities");
 const mysql = require("mysql2");
 
 router.get("/", function(req, res) {
-  res.render("admin", {
-    title: "Lab 10 - Admin page",
-    link: "window.location.href='/'",
-    btnName: "Lookup"
-  });
+  let loggedin = false;
+  if (!loggedin) {
+    res.redirect("/login");
+  } else {
+    res.render("admin", {
+      title: "Lab 10 - Admin page",
+      link: "window.location.href='/'",
+      btnName: "Lookup"
+    });
+  }
 });
 
 router.get("/authors", function(req, res, next) {
@@ -74,7 +79,6 @@ router.put("/author/update", function(req, res) {
   // Preparing sql and handles sqli
   sql = mysql.format(sql, inputs);
 
-
   const connection = createConnection();
   connection.query(sql, function(error, results, fields) {
     if (error) throw error;
@@ -105,7 +109,6 @@ router.post("/author/add", function(req, res) {
     portrait,
     biography
   } = req.body;
-
 
   const inputs = [
     firstName,
