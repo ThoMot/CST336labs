@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const createConnection = require("../db/database");
 const dateConverter = require("../tools/datehandler");
+const inputValidation = require("../tools/utilities");
 const mysql = require("mysql2");
 
 router.get("/", function(req, res) {
@@ -68,6 +69,8 @@ console.log(firstName);
     authorId
   ];
 
+  inputValidation(inputs);
+
   // Preparing sql and handles sqli
   sql = mysql.format(sql, inputs);
   console.log(sql);
@@ -89,6 +92,57 @@ console.log(firstName);
   });
   connection.end();
 });
+
+
+router.post("/author/add", function(req, res) {
+  const {
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  } = req.body;
+
+  const inputs = [
+    firstName,
+    lastName,
+    dob,
+    dod,
+    sex,
+    profession,
+    country,
+    portrait,
+    biography
+  ];
+
+  inputValidation(inputs);
+
+  let sql =
+    "INSERT INTO l9_author (firstName, lastName, dob, dod, sex, profession, country, portrait, biography) VALUES (?)";
+
+  sql = mysql.format(sql, [inputs]);
+
+  const connection = createConnection();
+
+  connection.query(sql, function(error, result, fields) {
+    if (error) console.error(error);
+    if (result) {
+      res.json({
+        status: "success",
+        message: `New author added with id: ${result.insertId}`
+      });
+    } else {
+      res.json({
+        status: "unsuccessful",
+        message: "Author creation failed"
+      });
+    }
+  });
+
 
 router.get("/author/:id", function(req, res) {
   const connection = createConnection();
@@ -120,6 +174,7 @@ router.get("/author/:id", function(req, res) {
       }
     }
   });
+ 
   connection.end();
 });
 

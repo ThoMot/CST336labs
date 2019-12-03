@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(() => {
   listAuthors();
   listGenders();
@@ -42,10 +39,7 @@ $(document).ready(() => {
     }
   });
 
-  $("#loginButton").on("click", function () {
-
-  });
-
+  $("#loginButton").on("click", function() {});
 });
 
 function listAuthors() {
@@ -173,9 +167,13 @@ function searchAuthor(authorValue) {
     }),
     success: function(result) {
       $("#quotesDiv").empty();
-      result.forEach(qt => {
-        displayQuote(qt.author, qt.quote);
-      });
+      if (result.length > 0) {
+        result.forEach(qt => {
+          displayQuote(qt.author, qt.quote);
+        });
+      } else if (result.error) {
+        displayError(result.message);
+      }
     },
     error: function(xhr, status) {
       console.log("error calling to POST router", status);
