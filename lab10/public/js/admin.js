@@ -4,6 +4,7 @@ $(document).ready(() => {
 
     $("#saveUpdates").on("click", function () {
         const updatedAuthor = {
+            authorId: $("#authID").html(),
             firstName: $("#inputFirstName").val(),
             lastName: $("#inputLastName").val(),
             dob: $("#inputDOB").val(),
@@ -128,7 +129,7 @@ function populateUpdateModal(author) {
     } = author;
 
 
-    $("#authID").text(`${authorId}`);
+    $("#authID").text(5);
     $("#inputFirstName").html(firstName);
     $("#inputLastName").html(lastName);
     $("#inputDOB").html(dob);
