@@ -53,17 +53,14 @@ function retreiveAuthors() {
 }
 
 //Gets author info for populating the update modal
-function getAuthorInfo(authorName) {
+function getAuthorInfo(authorId) {
     $.ajax({
-        url: "/allAuthorInfo",
-        method: "post",
+        url: `/admin/author/${authorId}`,
+        method: "get",
         contentType: "application/json",
         dataType: "json",
-        data: JSON.stringify({
-            authorName: authorName
-        }),
         success: function(result) {
-            populateUpdateModal(result);
+            populateUpdateModal(result.author);
         },
         error: function(xhr, status) {
             console.log("error calling to POST router", status);
@@ -129,16 +126,16 @@ function populateUpdateModal(author) {
     } = author;
 
 
-    $("#authID").text(5);
-    $("#inputFirstName").html(firstName);
-    $("#inputLastName").html(lastName);
-    $("#inputDOB").html(dob);
-    $("#inputDOD").html(dod);
-    $("#inputBio").html(biography);
-    $("#inputGender").html(gender);
+    $("#authID").text(authorId);
+    $("#inputFirstName").val(firstName);
+    $("#inputLastName").val(lastName);
+    $("#inputDOB").val(dob);
+    $("#inputDOD").val(dod);
+    $("#inputBio").val(biography);
+    $("#inputGender").val(gender[0]);
     $("#authorPic").attr("src", portrait);
-    $("#inputCountry").html(country);
-    $("#inputProfession").html(profession);
-    $("#inputPicture").html(portrait);
+    $("#inputCountry").val(country);
+    $("#inputProfession").val(profession);
+    $("#inputPicture").val(portrait);
 
 }
