@@ -53,7 +53,7 @@ router.put("/author/update", function(req, res) {
     portrait,
     biography
   } = req.body;
-  console.log(firstName);
+
   let sql =
     "UPDATE l9_author SET firstName=?, lastName=?, dob=?, dod=?, sex=?, profession=?, country=?, portrait=?, biography=? WHERE authorId=?";
   const inputs = [
@@ -73,7 +73,7 @@ router.put("/author/update", function(req, res) {
 
   // Preparing sql and handles sqli
   sql = mysql.format(sql, inputs);
-  console.log(sql);
+
 
   const connection = createConnection();
   connection.query(sql, function(error, results, fields) {
@@ -105,7 +105,7 @@ router.post("/author/add", function(req, res) {
     portrait,
     biography
   } = req.body;
-  console.log(req.body);
+
 
   const inputs = [
     firstName,
