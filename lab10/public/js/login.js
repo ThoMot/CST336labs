@@ -3,6 +3,11 @@ $(document).ready(() => {
     .modal("show")
     .on("hidden.bs.modal", function(e) {
       window.location.href = "/";
+    })
+    .keyup(e => {
+      if (e.keyCode === 13) {
+        login();
+      }
     });
 
   $("#login").on("click", () => {
