@@ -224,7 +224,7 @@ function logout() {
     dataType: "json",
     success: function(result) {
       if (result.successful) {
-        window.location.href = "/";
+        window.location.replace("/");
       }
     },
     error: function(xhr, status) {
