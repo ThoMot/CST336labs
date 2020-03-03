@@ -107,7 +107,7 @@
     $(document).ready(function () {
         $.ajax({
             method: "GET",
-            url: "https://cst336.herokuapp.com/projects/api/state_abbrAPI.php",
+            url: "https://itcdland.csumb.edu/~milara/ajax/states.php",
             dataType: "json",
             data: {"usps" : $("#state").val() },
             success: function(result,status) {
