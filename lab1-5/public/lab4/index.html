@@ -147,7 +147,7 @@
         // alert($("#zip").val());
         $.ajax({
             method: "GET",
-            url: "https://cst336.herokuapp.com/projects/api/countyListAPI.php",
+            url: "https://itcdland.csumb.edu/~milara/ajax/states.php",
             dataType: "json",
             data: {"state" : $("#state")[0].selectedOptions[0].id },
             success: function(result,status) {
