@@ -5,8 +5,8 @@ Collaborative Lab projects for CST336, Internet Programming at California State 
 - These are the labs for InternetProgramming cst336 at Cal state, Monterey Bay fall 2019.
 - Some of the APIs used might not be working any more.
 - These labs were completed by:
-<a href="www.github.com/ThoMot">Thomot - Thora Mothes</a>
-<a href="www.github.com/Certinax">Certinax - Mathias Ahrn</a>
+- <a href="https://github.com/ThoMot">Thomot - Thora Mothes</a>
+- <a href="https://github.com/Certinax">Certinax - Mathias Ahrn</a>
 
 ## Lab 2:
 #### Guess a number between 0 and 99 game.
