@@ -8,19 +8,19 @@ Collaborative Lab projects for CST336, Internet Programming at California State 
 <a href="www.github.com/ThoMot">Thomot - Thora Mothes</a>
 <a href="www.github.com/Certinax">Certinax - Mathias Ahrn</a>
 
-##Lab 2:
+## Lab 2:
 #### Guess a number between 0 and 99 game.
 http://cst336labs.herokuapp.com/lab2/guessNumber
 
-##Lab 3:
+## Lab 3:
 #### US Geography quiz.
 http://cst336labs.herokuapp.com/lab3/
 
-##Lab 4: 
+## Lab 4: 
 #### Auto-populated form and check for available username
 http://cst336labs.herokuapp.com/lab4/
 
-##Lab 5:
+## Lab 5:
 #### Pixabay image search
 http://cst336labs.herokuapp.com/lab5/
 
@@ -28,15 +28,15 @@ http://cst336labs.herokuapp.com/lab5/
 #### Pixabay image search IMPROVED
 https://cst336lab7tm.herokuapp.com/
 
-##Lab 8: 
+## Lab 8: 
 #### US Geography quiz IMPROVED
 https://cst336lab8tm.herokuapp.com/
 
-##Lab 9:
+## Lab 9:
 #### Quote lookup with database
 https://cst336lab9tm.herokuapp.com/
 
-##Lab 10:
+## Lab 10:
 ### Quote lookup with database addition and deletion and admin section
 **Admin credentials: username: root | password: toor**
 https://cst336lab10tm.herokuapp.com/
